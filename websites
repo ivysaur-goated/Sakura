@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groove & Soul — Where Music Meets Lifestyle</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE5D0;
+    --black: #1A1A18;
+    --brown: #3D2B1F;
+    --brown-mid: #6B4A35;
+    --brown-light: #A07855;
+    --orange: #C9622A;
+    --orange-light: #E8834D;
+    --sage: #7A8C6E;
+    --sage-light: #9FAF92;
+    --warm-white: #FAF7F2;
+    --text-muted: #8A7A6A;
+    --border: rgba(61,43,31,0.15);
+    --card-bg: rgba(245,240,232,0.6);
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  [data-theme="dark"] {
+    --cream: #1E1A15;
+    --cream-dark: #2A2218;
+    --black: #F5F0E8;
+    --brown: #D4B896;
+    --brown-mid: #C4A07A;
+    --brown-light: #A07855;
+    --warm-white: #251E17;
+    --text-muted: #9A8A75;
+    --border: rgba(200,170,130,0.15);
+    --card-bg: rgba(30,26,20,0.8);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+    cursor: none;
+  }
+  /* Custom cursor */
+  .cursor { position: fixed; width: 12px; height: 12px; background: var(--orange); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.15s ease, width 0.2s, height 0.2s; }
+  .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--orange); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.08s linear; opacity: 0.6; }
+  body:hover .cursor { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+  }
+  [data-theme="dark"] nav { background: rgba(30,26,20,0.92); }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(61,43,31,0.1); }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--brown);
+    letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  [data-theme="dark"] .nav-logo { color: var(--brown-mid); }
+  .logo-disc {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--black);
+    position: relative;
+    animation: spin 8s linear infinite;
+    flex-shrink: 0;
+  }
+  [data-theme="dark"] .logo-disc { background: var(--cream-dark); }
+  .logo-disc::before {
+    content: ''; position: absolute; inset: 4px;
+    border-radius: 50%; background: var(--brown);
+  }
+  .logo-disc::after {
+    content: ''; position: absolute; inset: 11px;
+    border-radius: 50%; background: var(--cream);
+  }
+  [data-theme="dark"] .logo-disc::after { background: var(--cream-dark); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .nav-links {
+    display: flex; align-items: center; gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--brown-mid);
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    transition: all var(--transition);
+    position: relative;
+  }
+  .nav-links a:hover { background: var(--orange); color: #fff; }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .theme-toggle {
+    width: 44px; height: 24px;
+    background: var(--brown-light);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    transition: background var(--transition);
+  }
+  .theme-toggle::after {
+    content: '';
+    position: absolute; top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform var(--transition);
+  }
+  [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--brown); display: block; transition: all var(--transition); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 68px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 65% 50%, rgba(201,98,42,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 70% at 20% 80%, rgba(122,140,110,0.07) 0%, transparent 60%);
+  }
+  .hero-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 4rem 0 5rem;
+    max-width: 680px;
+  }
+  .hero-kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-kicker::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--orange);
+  }
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 900;
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  [data-theme="dark"] .hero-h1 { color: var(--brown-mid); }
+  .hero-h1 em { font-style: italic; color: var(--orange); }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.9rem 2rem;
+    background: var(--brown);
+    color: var(--cream);
+    border: none; border-radius: 2rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,98,42,0.3); }
+  .btn-outline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--brown);
+    border: 1.5px solid var(--border);
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--brown); background: var(--brown); color: var(--cream); transform: translateY(-2px); }
+  .hero-visual {
+    position: absolute; right: 4rem; top: 50%;
+    transform: translateY(-50%);
+    width: 420px; height: 420px;
+  }
+  .big-record {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--black);
+    position: relative;
+    animation: spin 18s linear infinite;
+    box-shadow: 0 32px 80px rgba(26,26,24,0.25), inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  [data-theme="dark"] .big-record { background: #0D0B08; }
+  .record-grooves {
+    position: absolute; inset: 8px;
+    border-radius: 50%;
+  }
+  .groove { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.04); }
+  .big-record .label {
+    position: absolute; inset: 35%;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+  }
+  .big-record .label span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: #fff; letter-spacing: -0.02em;
+  }
+  .big-record .label span:last-child {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem; letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.7); text-transform: uppercase;
+  }
+  .record-arm {
+    position: absolute; top: -10px; right: 30px;
+    width: 90px; height: 220px;
+    transform-origin: top right;
+    animation: arm-float 6s ease-in-out infinite;
+  }
+  @keyframes arm-float { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(-8deg); } }
+  .floating-items {
+    position: absolute;
+    animation: float-item 4s ease-in-out infinite;
+  }
+  @keyframes float-item { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+  .hero-cats {
+    position: relative; z-index: 2;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    padding: 0 5rem;
+    margin-top: 3rem;
+  }
+  .cat-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    background: var(--warm-white);
+    color: var(--brown-mid);
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+  .cat-pill:hover, .cat-pill.active { background: var(--orange); border-color: var(--orange); color: #fff; transform: translateY(-2px); }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted);
+    animation: bounce-hint 2s ease-in-out infinite;
+  }
+  @keyframes bounce-hint { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+  .scroll-hint::after { content: ''; width: 1px; height: 36px; background: var(--border); }
+
+  /* FEATURED */
+  #featured {
+    padding: 6rem 5rem;
+    position: relative;
+  }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+  .section-kicker {
+    font-family: 'Space Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-kicker::before { content: ''; width: 20px; height: 1px; background: var(--orange); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; color: var(--brown);
+    line-height: 1.1; letter-spacing: -0.02em;
+  }
+  [data-theme="dark"] .section-title { color: var(--brown-mid); }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.25rem;
+  }
+  .feat-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--cream-dark);
+  }
+  .feat-card:first-child { grid-row: span 2; }
+  .feat-card-inner {
+    height: 100%;
+    min-height: 200px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .feat-card:first-child .feat-card-inner { min-height: 480px; }
+  .feat-card-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .feat-card:hover .feat-card-bg { transform: scale(1.05); }
+  .feat-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,16,8,0.85) 0%, rgba(26,16,8,0.2) 50%, transparent 100%);
+  }
+  .feat-card-content { position: relative; z-index: 1; }
+  .feat-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--orange-light);
+    margin-bottom: 0.4rem;
+  }
+  .feat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: #fff; line-height: 1.2;
+  }
+  .feat-card:first-child .feat-name { font-size: 2rem; }
+  .feat-price {
+    font-family: 'Space Mono', monospace; font-size: 0.8rem;
+    color: rgba(255,255,255,0.6); margin-top: 0.5rem;
+  }
+
+  /* RECORD BG PATTERNS */
+  .bg-record { background: conic-gradient(from 0deg, #2a1f14, #3d2b1f, #1a1208, #4a3020, #2a1f14); }
+  .bg-cass { background: linear-gradient(135deg, #4a3520 0%, #2d1f12 100%); }
+  .bg-cloth { background: linear-gradient(135deg, #3d5a3e 0%, #2a3d2b 100%); }
+  .bg-glass { background: linear-gradient(135deg, #1e3a4a 0%, #0d2535 100%); }
+  .bg-jewel { background: linear-gradient(135deg, #4a2d35 0%, #2d1520 100%); }
+
+  /* SVG product icons inside cards */
+  .card-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) translateY(-20px); opacity: 0.15; }
+
+  /* SHOP */
+  #shop { padding: 5rem; background: var(--warm-white); }
+  [data-theme="dark"] #shop { background: var(--cream-dark); }
+  .cat-filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .filter-btn {
+    font-family: 'Space Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.55rem 1.25rem; border-radius: 2rem;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--brown-mid);
+    cursor: pointer; transition: all var(--transition);
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--brown); border-color: var(--brown); color: var(--cream); }
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .product-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+  [data-theme="dark"] .product-card { background: var(--cream); }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(61,43,31,0.12); border-color: var(--orange); }
+  .product-img {
+    height: 200px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-img svg { transition: transform 0.4s; }
+  .product-card:hover .product-img svg { transform: scale(1.08) rotate(-3deg); }
+  .product-info { padding: 1rem 1.25rem; }
+  .product-cat {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 0.3rem;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
+    color: var(--brown); line-height: 1.3; margin-bottom: 0.4rem;
+  }
+  [data-theme="dark"] .product-name { color: var(--brown-mid); }
+  .product-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+  .product-price {
+    font-family: 'Space Mono', monospace; font-size: 0.85rem;
+    color: var(--brown-mid); margin-top: 0.75rem;
+    padding-top: 0.75rem; border-top: 1px solid var(--border);
+  }
+  .product-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.65rem; border-radius: 2rem;
+    background: var(--orange); color: #fff;
+  }
+
+  /* ABOUT */
+  #about { padding: 6rem 5rem; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual {
+    position: relative; height: 520px;
+  }
+  .about-record {
+    position: absolute; width: 340px; height: 340px;
+    border-radius: 50%; background: var(--black);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: spin 20s linear infinite;
+    box-shadow: 0 24px 60px rgba(26,26,24,0.3);
+  }
+  [data-theme="dark"] .about-record { background: #0D0B08; }
+  .about-record .label {
+    position: absolute; inset: 32%;
+    border-radius: 50%; background: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 2px;
+  }
+  .about-record .label p { font-family: 'Playfair Display', serif; color: #fff; font-size: 0.85rem; }
+  .about-record .label span { font-family: 'Space Mono', monospace; font-size: 0.45rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.6); text-transform: uppercase; }
+  .about-badge {
+    position: absolute;
+    font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.5rem 1rem; border-radius: 2rem;
+    border: 1px solid var(--border);
+    background: var(--warm-white); color: var(--brown-mid);
+  }
+  [data-theme="dark"] .about-badge { background: var(--cream-dark); }
+  .about-text p {
+    font-size: 1.05rem; color: var(--text-muted); line-height: 1.8;
+    margin-bottom: 1.25rem; font-weight: 300;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900;
+    color: var(--orange); display: block;
+  }
+  .stat-label {
+    font-family: 'Space Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* EVENTS */
+  #events { padding: 5rem; background: var(--brown); position: relative; overflow: hidden; }
+  .events-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(45deg, var(--cream) 0, var(--cream) 1px, transparent 0, transparent 50%);
+    background-size: 20px 20px;
+  }
+  #events .section-title { color: var(--cream); }
+  #events .section-kicker { color: var(--orange-light); }
+  #events .section-kicker::before { background: var(--orange-light); }
+  .events-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .event-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px; padding: 1.5rem;
+    transition: all var(--transition);
+  }
+  .event-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+  .event-date {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 0.75rem;
+  }
+  .event-title {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.5rem;
+  }
+  .event-desc { font-size: 0.88rem; color: rgba(245,240,232,0.6); line-height: 1.6; }
+  .event-tag {
+    display: inline-block; margin-top: 1rem;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.75rem; border-radius: 2rem;
+    background: rgba(201,98,42,0.3); color: var(--orange-light);
+  }
+
+  /* TESTIMONIALS */
+  #testimonials { padding: 5rem; }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .testi-card {
+    background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem;
+    transition: all var(--transition); position: relative;
+  }
+  [data-theme="dark"] .testi-card { background: var(--cream-dark); }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(61,43,31,0.1); }
+  .testi-quote {
+    font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+    color: var(--orange); opacity: 0.3; line-height: 1; margin-bottom: 0.5rem;
+  }
+  .testi-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
+  .testi-author { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--brown-mid); text-transform: uppercase; }
+  .testi-stars { color: var(--orange); font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  /* INSTAGRAM */
+  #instagram { padding: 5rem; background: var(--warm-white); }
+  [data-theme="dark"] #instagram { background: var(--cream-dark); }
+  .insta-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .insta-cell {
+    aspect-ratio: 1;
+    border-radius: 8px; overflow: hidden; position: relative; cursor: pointer;
+    transition: all var(--transition);
+  }
+  .insta-cell:hover { transform: scale(1.04); z-index: 2; }
+  .insta-cell:hover .insta-overlay { opacity: 1; }
+  .insta-overlay {
+    position: absolute; inset: 0;
+    background: rgba(201,98,42,0.7);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity var(--transition);
+    font-size: 1.5rem; color: #fff;
+  }
+
+  /* NEWSLETTER */
+  #newsletter { padding: 5rem; background: var(--black); text-align: center; }
+  [data-theme="dark"] #newsletter { background: #0D0B08; }
+  #newsletter h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900;
+    color: var(--cream); letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+  #newsletter p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem; font-weight: 300; }
+  .newsletter-form {
+    display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; max-width: 480px; margin: 0 auto;
+  }
+  .newsletter-form input {
+    flex: 1; min-width: 220px;
+    font-family: 'Lato', sans-serif; font-size: 0.95rem;
+    padding: 0.85rem 1.5rem;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2rem; color: var(--cream);
+    outline: none; transition: border-color var(--transition);
+  }
+  .newsletter-form input::placeholder { color: var(--text-muted); }
+  .newsletter-form input:focus { border-color: var(--orange); }
+  .newsletter-form button { background: var(--orange); color: #fff; border: none; border-radius: 2rem; padding: 0.85rem 2rem; cursor: pointer; font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; transition: all var(--transition); }
+  .newsletter-form button:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  /* CONTACT */
+  #contact { padding: 6rem 5rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--brown); margin-bottom: 1.5rem; }
+  [data-theme="dark"] .contact-info h3 { color: var(--brown-mid); }
+  .contact-detail { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+  .contact-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--cream-dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  [data-theme="dark"] .contact-icon { background: var(--cream); }
+  .contact-detail-text span { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 0.25rem; }
+  .contact-detail-text p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+  .map-placeholder { margin-top: 1.5rem; height: 200px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--cream-dark); display: flex; align-items: center; justify-content: center; position: relative; }
+  [data-theme="dark"] .map-placeholder { background: var(--cream); }
+  .contact-form { background: var(--warm-white); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
+  [data-theme="dark"] .contact-form { background: var(--cream-dark); }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brown-mid); display: block; margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; font-family: 'Lato', sans-serif; font-size: 0.95rem;
+    padding: 0.75rem 1rem; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--cream);
+    color: var(--black); outline: none; resize: vertical;
+    transition: border-color var(--transition);
+  }
+  [data-theme="dark"] .form-group input,
+  [data-theme="dark"] .form-group textarea,
+  [data-theme="dark"] .form-group select { background: var(--cream-dark); color: var(--black); }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(201,98,42,0.1); }
+  .form-group textarea { min-height: 120px; }
+
+  /* FOOTER */
+  footer { background: var(--brown); padding: 3rem 5rem 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+  .footer-brand p { color: rgba(245,240,232,0.6); font-size: 0.88rem; line-height: 1.7; margin-top: 0.75rem; max-width: 280px; }
+  .footer-col h4 { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.5rem; }
+  .footer-col ul li a { color: rgba(245,240,232,0.5); font-size: 0.88rem; text-decoration: none; transition: color var(--transition); }
+  .footer-col ul li a:hover { color: var(--cream); }
+  .footer-bottom { border-top: 1px solid rgba(245,240,232,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 0.8rem; color: rgba(245,240,232,0.4); font-family: 'Space Mono', monospace; }
+  .social-links { display: flex; gap: 0.75rem; }
+  .social-link { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(245,240,232,0.2); display: flex; align-items: center; justify-content: center; color: rgba(245,240,232,0.5); transition: all var(--transition); text-decoration: none; font-size: 0.8rem; }
+  .social-link:hover { border-color: var(--orange); background: var(--orange); color: #fff; }
+
+  /* MOBILE NAV */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: var(--cream); padding: 100px 2.5rem 2.5rem;
+    flex-direction: column; gap: 0.5rem;
+  }
+  [data-theme="dark"] .mobile-menu { background: var(--cream-dark); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--brown); text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid var(--border); transition: color var(--transition); }
+  [data-theme="dark"] .mobile-menu a { color: var(--brown-mid); }
+  .mobile-menu a:hover { color: var(--orange); }
+
+  /* ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (max-width: 1024px) {
+    .hero-visual { display: none; }
+    .hero-content { max-width: 100%; }
+    .featured-grid { grid-template-columns: 1fr 1fr; }
+    .feat-card:first-child { grid-column: span 2; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .about-visual { height: 300px; }
+    .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    #home, #featured, #shop, #about, #events, #testimonials, #instagram, #newsletter, #contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero-content { padding: 2rem 1.5rem; }
+    .hero-cats { padding: 0 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .feat-card:first-child { grid-column: auto; }
+    .insta-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-bottom { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="logo-disc"></div>
+    Groove & Soul
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Visit Us</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode"></button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#shop" onclick="closeMobile()">Shop</a>
+  <a href="#events" onclick="closeMobile()">Events</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#contact" onclick="closeMobile()">Visit Us</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-kicker reveal">Est. 2009 — Locally Curated</div>
+    <h1 class="hero-h1 reveal reveal-delay-1">Where Music<br>Meets <em>Lifestyle</em></h1>
+    <p class="hero-sub reveal reveal-delay-2">Rare vinyl, vintage cassettes, handmade jewelry, curated clothing, and locally grown community. This is more than a record store — it's a way of life.</p>
+    <div class="hero-btns reveal reveal-delay-3">
+      <a href="#shop" class="btn-primary">Explore Collection</a>
+      <a href="#contact" class="btn-outline">Visit Us</a>
+      <a href="#events" class="btn-outline">See What's New</a>
+    </div>
+  </div>
+
+  <!-- Big spinning record -->
+  <div class="hero-visual">
+    <div class="big-record">
+      <div class="record-grooves" id="grooves"></div>
+      <div class="label">
+        <span>G&S</span>
+        <span>Original</span>
+      </div>
+    </div>
+    <!-- Needle arm SVG -->
+    <svg class="record-arm" viewBox="0 0 90 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="80" y1="10" x2="45" y2="200" stroke="#6B4A35" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="80" cy="10" r="8" fill="#A07855"/>
+      <circle cx="44" cy="202" r="5" fill="#C9622A"/>
+    </svg>
+  </div>
+
+  <div class="hero-cats">
+    <a href="#shop" class="cat-pill active" data-filter="all">All</a>
+    <a href="#shop" class="cat-pill" data-filter="records">Records</a>
+    <a href="#shop" class="cat-pill" data-filter="tapes">CDs & Tapes</a>
+    <a href="#shop" class="cat-pill" data-filter="glass">Glass</a>
+    <a href="#shop" class="cat-pill" data-filter="clothing">Clothing</a>
+    <a href="#shop" class="cat-pill" data-filter="jewelry">Jewelry</a>
+    <a href="#shop" class="cat-pill" data-filter="incense">Incense & Herbs</a>
+    <a href="#shop" class="cat-pill" data-filter="local">Local Goods</a>
+  </div>
+
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- FEATURED -->
+<section id="featured">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker reveal">Handpicked for you</div>
+      <h2 class="section-title reveal reveal-delay-1">In-Store Highlights</h2>
+    </div>
+    <a href="#shop" class="btn-outline reveal reveal-delay-2">View All</a>
+  </div>
+  <div class="featured-grid">
+    <div class="feat-card reveal">
+      <div class="feat-card-inner bg-record">
+        <svg class="card-icon" width="220" height="220" viewBox="0 0 220 220" fill="none">
+          <circle cx="110" cy="110" r="104" stroke="white" stroke-width="2"/>
+          <circle cx="110" cy="110" r="80" stroke="white" stroke-width="1.5"/>
+          <circle cx="110" cy="110" r="56" stroke="white" stroke-width="1.5"/>
+          <circle cx="110" cy="110" r="32" stroke="white" stroke-width="1.5"/>
+          <circle cx="110" cy="110" r="16" fill="white" opacity="0.5"/>
+          <circle cx="110" cy="110" r="6" fill="white"/>
+        </svg>
+        <div class="feat-card-overlay"></div>
+        <div class="feat-card-content">
+          <div class="feat-tag">Records</div>
+          <div class="feat-name">Rare Vinyl<br>Collection</div>
+          <div class="feat-price">Starting from $12</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-card-inner bg-cass">
+        <svg class="card-icon" width="140" height="100" viewBox="0 0 140 100" fill="none">
+          <rect x="5" y="5" width="130" height="90" rx="8" stroke="white" stroke-width="2"/>
+          <circle cx="40" cy="50" r="20" stroke="white" stroke-width="2"/>
+          <circle cx="40" cy="50" r="8" fill="white" opacity="0.4"/>
+          <circle cx="100" cy="50" r="20" stroke="white" stroke-width="2"/>
+          <circle cx="100" cy="50" r="8" fill="white" opacity="0.4"/>
+          <path d="M60 50 Q70 38 80 50" stroke="white" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="feat-card-overlay"></div>
+        <div class="feat-card-content">
+          <div class="feat-tag">Cassettes</div>
+          <div class="feat-name">Vintage Tapes</div>
+          <div class="feat-price">From $5</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-card-inner bg-cloth">
+        <svg class="card-icon" width="100" height="120" viewBox="0 0 100 120" fill="none">
+          <path d="M20 20 L10 50 L35 45 L35 110 L65 110 L65 45 L90 50 L80 20 L60 30 Q50 10 40 30 Z" stroke="white" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="feat-card-overlay"></div>
+        <div class="feat-card-content">
+          <div class="feat-tag">Clothing</div>
+          <div class="feat-name">Curated Threads</div>
+          <div class="feat-price">From $18</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-card-inner bg-jewel">
+        <svg class="card-icon" width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M50 10 L65 35 L90 40 L70 60 L75 85 L50 72 L25 85 L30 60 L10 40 L35 35 Z" stroke="white" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="feat-card-overlay"></div>
+        <div class="feat-card-content">
+          <div class="feat-tag">Jewelry</div>
+          <div class="feat-name">Handcrafted Pieces</div>
+          <div class="feat-price">From $22</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-card-inner bg-glass">
+        <svg class="card-icon" width="80" height="120" viewBox="0 0 80 120" fill="none">
+          <path d="M15 10 Q5 50 20 80 L20 110 L60 110 L60 80 Q75 50 65 10 Z" stroke="white" stroke-width="2" fill="none"/>
+          <line x1="20" y1="85" x2="60" y2="85" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <div class="feat-card-overlay"></div>
+        <div class="feat-card-content">
+          <div class="feat-tag">Glass</div>
+          <div class="feat-name">Artisan Glass</div>
+          <div class="feat-price">From $28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker reveal">Browse the stacks</div>
+      <h2 class="section-title reveal reveal-delay-1">Our Collection</h2>
+    </div>
+  </div>
+  <div class="cat-filters reveal reveal-delay-1" id="catFilters">
+    <button class="filter-btn active" data-filter="all">All Items</button>
+    <button class="filter-btn" data-filter="records">Records</button>
+    <button class="filter-btn" data-filter="tapes">CDs & Tapes</button>
+    <button class="filter-btn" data-filter="glass">Glass</button>
+    <button class="filter-btn" data-filter="clothing">Clothing</button>
+    <button class="filter-btn" data-filter="jewelry">Jewelry</button>
+    <button class="filter-btn" data-filter="incense">Incense & Herbs</button>
+    <button class="filter-btn" data-filter="local">Local Goods</button>
+  </div>
+  <div class="shop-grid" id="shopGrid">
+    <!-- Products injected by JS -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-record">
+        <div class="label">
+          <p>G&S</p>
+          <span>Soul Records</span>
+        </div>
+      </div>
+      <div class="about-badge" style="top: 12%; left: 8%;">Est. 2009</div>
+      <div class="about-badge" style="bottom: 14%; right: 6%;">Nashville, TN</div>
+      <div class="about-badge" style="bottom: 35%; left: 2%;">Local First</div>
+    </div>
+    <div class="about-text">
+      <div class="section-kicker reveal">Our story</div>
+      <h2 class="section-title reveal reveal-delay-1">More Than<br>a Record Store</h2>
+      <p class="reveal reveal-delay-2" style="margin-top:1.5rem">Groove & Soul was born from a love letter to music and the communities it builds. Opened in 2009 in the heart of Nashville, we've spent over fifteen years curating the kind of space where a jazz collector, a hip-hop head, and a folk enthusiast all feel equally at home.</p>
+      <p class="reveal reveal-delay-3">Beyond vinyl, we carry locally made goods, handcrafted jewelry, vintage clothing, and artisan glass — because culture doesn't live in music alone. We partner with Nashville artists, carry their work, and platform their stories.</p>
+      <p class="reveal reveal-delay-4">This is a sanctuary for those who live with intention and collect with soul.</p>
+      <div class="about-stats reveal reveal-delay-3">
+        <div><span class="stat-num">15+</span><span class="stat-label">Years open</span></div>
+        <div><span class="stat-num">40K+</span><span class="stat-label">Records in stock</span></div>
+        <div><span class="stat-num">200+</span><span class="stat-label">Local artists</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="events-pattern"></div>
+  <div style="position:relative;z-index:1">
+    <div class="section-kicker reveal">Mark your calendar</div>
+    <h2 class="section-title reveal reveal-delay-1">In-Store Events</h2>
+    <div class="events-grid">
+      <div class="event-card reveal reveal-delay-1">
+        <div class="event-date">April 12, 2026 — 6:00 PM</div>
+        <div class="event-title">Record Store Day Warm-Up</div>
+        <div class="event-desc">Join us the week before the big day for exclusive early drops, live DJ sets, and a sneak peek at our RSD picks. Free admission.</div>
+        <span class="event-tag">Free Entry</span>
+      </div>
+      <div class="event-card reveal reveal-delay-2">
+        <div class="event-date">April 19, 2026 — All Day</div>
+        <div class="event-title">Record Store Day 2026</div>
+        <div class="event-desc">The official day — limited edition releases, artist signings, food trucks, and live music on the sidewalk. Get here early, these go fast.</div>
+        <span class="event-tag">Limited Drops</span>
+      </div>
+      <div class="event-card reveal reveal-delay-3">
+        <div class="event-date">May 3, 2026 — 7:00 PM</div>
+        <div class="event-title">Local Artist Showcase</div>
+        <div class="event-desc">Three Nashville artists, one evening. Live performances spotlighting musicians whose music lives in our bins. RSVP encouraged.</div>
+        <span class="event-tag">Live Music</span>
+      </div>
+      <div class="event-card reveal reveal-delay-1">
+        <div class="event-date">May 17, 2026 — 2:00 PM</div>
+        <div class="event-title">Vinyl Crate Dig: Soul Edition</div>
+        <div class="event-desc">We pull the deep cuts from storage. Soul, funk, and R&B. Dig through hundreds of records, many priced under ten dollars.</div>
+        <span class="event-tag">Collectors</span>
+      </div>
+      <div class="event-card reveal reveal-delay-2">
+        <div class="event-date">June 7, 2026 — 4:00 PM</div>
+        <div class="event-title">Jewelry Making Workshop</div>
+        <div class="event-desc">Collaborative session with local jeweler Maya Thorn. Create your own piece using vintage and reclaimed materials. Tickets $35.</div>
+        <span class="event-tag">Workshop</span>
+      </div>
+      <div class="event-card reveal reveal-delay-3">
+        <div class="event-date">Every Sunday — 11:00 AM</div>
+        <div class="event-title">Sunday Morning Sessions</div>
+        <div class="event-desc">Slow mornings with good coffee, curated playlists, and no rush. Pull up a chair, flip through some records, stay as long as you like.</div>
+        <span class="event-tag">Recurring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker reveal">Word on the street</div>
+      <h2 class="section-title reveal reveal-delay-1">What People Say</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Found a first pressing I'd been hunting for three years. The staff knew exactly what I was looking for from just a vague description. This place has magic in the walls.</div>
+      <div class="testi-author">— Marcus D., Collector</div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Not just a record store — a whole vibe. I've bought jewelry, a vintage jacket, and about forty records here. The incense alone is worth the trip.</div>
+      <div class="testi-author">— Jade L., Regular</div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Every time I visit Nashville, this is my first stop. The curation is unlike anywhere else — they stock things you didn't know you needed but immediately can't live without.</div>
+      <div class="testi-author">— Sam W., Traveler</div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">My daughter and I come every weekend. She's 19 and completely hooked on vinyl now. This store turned her into a collector. That's the power of this place.</div>
+      <div class="testi-author">— Renee M., Parent</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker reveal">@grooveandsoul</div>
+      <h2 class="section-title reveal reveal-delay-1">From Our Feed</h2>
+    </div>
+    <a href="#" class="btn-outline reveal">Follow Us</a>
+  </div>
+  <div class="insta-grid reveal">
+    <div class="insta-cell" style="background: conic-gradient(from 45deg, #3d2b1f, #6b4a35, #a07855, #3d2b1f)">
+      <div class="insta-overlay">♪</div>
+    </div>
+    <div class="insta-cell" style="background: linear-gradient(135deg, #4a3520, #c9622a)">
+      <div class="insta-overlay">♪</div>
+    </div>
+    <div class="insta-cell" style="background: linear-gradient(135deg, #1e3a2a, #3d5a3e)">
+      <div class="insta-overlay">♪</div>
+    </div>
+    <div class="insta-cell" style="background: linear-gradient(135deg, #2d1520, #6b2a40)">
+      <div class="insta-overlay">♪</div>
+    </div>
+    <div class="insta-cell" style="background: conic-gradient(from 180deg, #1a1208, #4a3020, #c9622a, #1a1208)">
+      <div class="insta-overlay">♪</div>
+    </div>
+    <div class="insta-cell" style="background: linear-gradient(135deg, #1e3a4a, #7a8c6e)">
+      <div class="insta-overlay">♪</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="section-kicker reveal" style="color: var(--orange-light); justify-content: center; margin-bottom: 0.75rem;">
+    <span style="width:20px;height:1px;background:var(--orange-light);display:inline-block;"></span>
+    Stay in the loop
+  </div>
+  <h2 class="reveal reveal-delay-1">Get the Weekly Drop</h2>
+  <p class="reveal reveal-delay-2">New arrivals, upcoming events, and exclusive deals — straight to your inbox. No spam, just soul.</p>
+  <form class="newsletter-form reveal reveal-delay-3" onsubmit="handleNewsletter(event)">
+    <input type="email" placeholder="your@email.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker reveal">Find us</div>
+      <h2 class="section-title reveal reveal-delay-1">Visit the Shop</h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Come see us in person</h3>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 6.75A1.75 1.75 0 1 1 8 4.25a1.75 1.75 0 0 1 0 3.5z" fill="#C9622A"/></svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>Address</span>
+          <p>114 2nd Ave S<br>Nashville, TN 37201</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.75 10.5h-1.5V7.25h1.5v4.25zm0-5.75h-1.5v-1.5h1.5v1.5z" fill="#C9622A"/></svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>Hours</span>
+          <p>Mon–Sat: 10am – 8pm<br>Sunday: 11am – 6pm</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 10.3l-2-2a1 1 0 0 0-1.4 0l-.9.9a7.3 7.3 0 0 1-2.4-2.4l.9-.9a1 1 0 0 0 0-1.4l-2-2A1 1 0 0 0 4.3 2.7L3 4a1 1 0 0 0 0 1 12 12 0 0 0 8 8 1 1 0 0 0 1 0l1.3-1.3a1 1 0 0 0-.8-1.4z" fill="#C9622A"/></svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>Phone</span>
+          <p>(615) 555-0192</p>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="200" fill="#e8e0d4"/>
+          <path d="M0 100 Q50 80 100 100 Q150 120 200 100 Q250 80 300 100 Q350 120 400 100" stroke="#c9b89a" stroke-width="2" fill="none"/>
+          <path d="M0 130 Q80 110 160 130 Q240 150 320 130 Q360 120 400 130" stroke="#c9b89a" stroke-width="1.5" fill="none"/>
+          <line x1="200" y1="0" x2="200" y2="200" stroke="#c9b89a" stroke-width="1"/>
+          <line x1="0" y1="100" x2="400" y2="100" stroke="#c9b89a" stroke-width="1"/>
+          <circle cx="200" cy="100" r="12" fill="#C9622A"/>
+          <circle cx="200" cy="100" r="5" fill="white"/>
+          <text x="216" y="96" font-family="monospace" font-size="11" fill="#3d2b1f">Groove & Soul</text>
+          <text x="216" y="110" font-family="monospace" font-size="9" fill="#8a7a6a">114 2nd Ave S, Nashville</text>
+        </svg>
+      </div>
+      <a href="https://maps.google.com" target="_blank" class="btn-primary" style="display:inline-block; margin-top:1rem;">Get Directions</a>
+    </div>
+    <div class="contact-form reveal reveal-delay-2">
+      <h3 style="font-family:'Playfair Display',serif; color:var(--brown); margin-bottom:1.5rem; font-size:1.3rem;">Send Us a Message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="First & Last Name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label>What's This About?</label>
+        <select>
+          <option>General Inquiry</option>
+          <option>Record Inquiry</option>
+          <option>Event Inquiry</option>
+          <option>Local Artist Partnership</option>
+          <option>Wholesale / Trade</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Message</label>
+        <textarea placeholder="Tell us what's on your mind..."></textarea>
+      </div>
+      <button class="btn-primary" onclick="handleContact()" style="width:100%; justify-content:center; display:block; text-align:center;">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="nav-logo" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--cream);">
+        <div class="logo-disc"></div>
+        <span style="font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900;">Groove & Soul</span>
+      </a>
+      <p>A music and lifestyle shop rooted in Nashville culture. Vinyl, cassettes, clothing, jewelry, glass, and locally made goods — curated with intention.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#shop">Records</a></li>
+        <li><a href="#shop">CDs & Tapes</a></li>
+        <li><a href="#shop">Clothing</a></li>
+        <li><a href="#shop">Jewelry</a></li>
+        <li><a href="#shop">Glass</a></li>
+        <li><a href="#shop">Incense & Herbs</a></li>
+        <li><a href="#shop">Local Goods</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Visit Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Groove & Soul. All rights reserved. Nashville, TN.</p>
+    <div class="social-links">
+      <a href="#" class="social-link" title="Instagram">ig</a>
+      <a href="#" class="social-link" title="Facebook">fb</a>
+      <a href="#" class="social-link" title="Twitter">tw</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// === CURSOR ===
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let rx = 0, ry = 0, mx = 0, my = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+function lerpRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(lerpRing); }
+lerpRing();
+document.querySelectorAll('a,button,.feat-card,.product-card,.insta-cell').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; cursor.style.opacity='0.5'; ring.style.width='50px'; ring.style.height='50px'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; cursor.style.opacity='1'; ring.style.width='36px'; ring.style.height='36px'; });
+});
+
+// === THEME TOGGLE ===
+const html = document.documentElement;
+const toggleBtn = document.getElementById('themeToggle');
+const saved = localStorage.getItem('grooveTheme');
+if(saved) html.setAttribute('data-theme', saved);
+toggleBtn.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('grooveTheme', next);
+});
+
+// === STICKY NAV ===
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// === HAMBURGER ===
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => { mob.classList.toggle('open'); });
+function closeMobile() { mob.classList.remove('open'); }
+
+// === CATEGORY PILLS (Hero) ===
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', e => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+
+// === SHOP DATA ===
+const products = [
+  { cat: 'records', name: 'Miles Davis — Kind of Blue', desc: 'Original 1959 Columbia pressing. Near mint condition. The most essential jazz record ever cut.', price: '$185', badge: 'Rare' },
+  { cat: 'records', name: 'Joni Mitchell — Blue', desc: 'First UK pressing, 1971. Lightly used with original inner sleeve. An absolute folk masterwork.', price: '$95' },
+  { cat: 'records', name: 'Marvin Gaye — What\'s Going On', desc: 'Tamla label original, 1971. VG+ condition. Socially charged soul at its finest.', price: '$75', badge: 'Popular' },
+  { cat: 'tapes', name: 'Prince — Purple Rain Cassette', desc: 'Original 1984 Warner Bros cassette, chrome tape. Mint condition in original shell.', price: '$28', badge: 'Rare' },
+  { cat: 'tapes', name: 'Various — 90s R&B Mix CDs', desc: 'Locally curated mix CDs by our in-house DJs. Each one is one-of-a-kind. Limited run.', price: '$12' },
+  { cat: 'clothing', name: 'Groove & Soul Crewneck', desc: 'Heavyweight 100% cotton crewneck in cream and deep brown. Embroidered chest logo. Made locally.', price: '$55' },
+  { cat: 'clothing', name: 'Vintage Band Tee — Assorted', desc: 'Pre-loved vintage tees curated by our buyers. Every piece different. Sizes S–XL available.', price: '$22', badge: 'Vintage' },
+  { cat: 'jewelry', name: 'Record Groove Ring', desc: 'Sterling silver ring with concentric groove etching by Nashville jeweler Zoe Hartwell.', price: '$68' },
+  { cat: 'jewelry', name: 'Cassette Tape Pendant', desc: 'Bronze-cast cassette tape on a 16" box chain. Handmade in small batches of 20.', price: '$44', badge: 'Handmade' },
+  { cat: 'glass', name: 'Nashville Skyline Glass Pipe', desc: 'Hand-blown by local artist Devon Crane. Nashville skyline etched into the clear borosilicate body.', price: '$85', badge: 'Local' },
+  { cat: 'incense', name: 'Palo Santo Bundle', desc: 'Ethically sourced Peruvian palo santo, bundled in fives. Woody, sweet, and grounding.', price: '$14' },
+  { cat: 'incense', name: 'Sage & Lavender Bundle', desc: 'White sage wrapped with dried lavender. Harvested in small batches in California.', price: '$10' },
+  { cat: 'local', name: 'Nashville Honey Co. — Raw Honey', desc: 'Single-origin raw wildflower honey from East Nashville beekeepers. 12oz jar.', price: '$18', badge: 'Local' },
+  { cat: 'local', name: 'Kema Candles — Vinyl Scent', desc: '"Vinyl & Dust" — a soy candle that smells exactly like an old record store. Uncanny.', price: '$24', badge: 'Local' },
+  { cat: 'records', name: 'Stevie Wonder — Songs in the Key of Life', desc: 'Double LP, 1976 Tamla. GD+ condition with all inserts present. An iconic double album.', price: '$55' },
+  { cat: 'glass', name: 'Color Swirl Glass Bong', desc: 'Thick borosilicate with swirling amber and sage color work. Each piece is entirely unique.', price: '$140', badge: 'Artisan' },
+];
+
+const catColors = {
+  records: '#3d2b1f', tapes: '#4a3520', clothing: '#3d5a3e',
+  jewelry: '#4a2d35', glass: '#1e3a4a', incense: '#4a3a20', local: '#3a4020'
+};
+
+const catIcons = {
+  records: `<svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.3)" stroke-width="2"/><circle cx="40" cy="40" r="28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/><circle cx="40" cy="40" r="20" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><circle cx="40" cy="40" r="8" fill="rgba(255,255,255,0.3)"/><circle cx="40" cy="40" r="3" fill="rgba(255,255,255,0.6)"/></svg>`,
+  tapes: `<svg width="80" height="60" viewBox="0 0 80 60" fill="none"><rect x="4" y="8" width="72" height="44" rx="5" stroke="rgba(255,255,255,0.3)" stroke-width="2"/><circle cx="25" cy="30" r="10" stroke="rgba(255,255,255,0.25)" stroke-width="2"/><circle cx="25" cy="30" r="4" fill="rgba(255,255,255,0.2)"/><circle cx="55" cy="30" r="10" stroke="rgba(255,255,255,0.25)" stroke-width="2"/><circle cx="55" cy="30" r="4" fill="rgba(255,255,255,0.2)"/><path d="M35 30 Q40 22 45 30" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/></svg>`,
+  clothing: `<svg width="60" height="70" viewBox="0 0 60 70" fill="none"><path d="M12 12 L6 30 L20 27 L20 65 L40 65 L40 27 L54 30 L48 12 L36 18 Q30 6 24 18 Z" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/></svg>`,
+  jewelry: `<svg width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M35 8 L43 25 L62 28 L48 42 L52 62 L35 53 L18 62 L22 42 L8 28 L27 25 Z" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/></svg>`,
+  glass: `<svg width="50" height="80" viewBox="0 0 50 80" fill="none"><path d="M10 8 Q3 35 12 55 L12 72 L38 72 L38 55 Q47 35 40 8 Z" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/><line x1="12" y1="57" x2="38" y2="57" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/></svg>`,
+  incense: `<svg width="60" height="80" viewBox="0 0 60 80" fill="none"><line x1="30" y1="8" x2="30" y2="70" stroke="rgba(255,255,255,0.3)" stroke-width="2"/><path d="M30 8 Q18 18 22 30 Q28 42 22 52" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/><circle cx="30" cy="70" r="4" fill="rgba(255,255,255,0.25)"/></svg>`,
+  local: `<svg width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M35 10 Q25 20 20 35 Q15 50 25 60 Q30 65 35 63 Q40 65 45 60 Q55 50 50 35 Q45 20 35 10 Z" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/><path d="M35 25 Q28 35 30 45" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/></svg>`
+};
+
+function renderProducts(filter = 'all') {
+  const grid = document.getElementById('shopGrid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" data-cat="${p.cat}">
+      <div class="product-img" style="background:${catColors[p.cat] || '#3d2b1f'}">
+        ${catIcons[p.cat] || ''}
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+      </div>
+      <div class="product-info">
+        <div class="product-cat">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-price">${p.price}</div>
+      </div>
+    </div>
+  `).join('');
+}
+renderProducts();
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.filter);
+    // Sync hero pills
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.cat-pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.filter === f);
+    });
+  });
+});
+
+// === RECORD GROOVES ===
+const grooveContainer = document.getElementById('grooves');
+if(grooveContainer) {
+  for(let i = 5; i <= 95; i += 3.5) {
+    const g = document.createElement('div');
+    g.className = 'groove';
+    g.style.cssText = `inset:${i}%;`;
+    grooveContainer.appendChild(g);
+  }
+}
+
+// === SCROLL REVEALS ===
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// === NEWSLETTER ===
+function handleNewsletter(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'You\'re in!';
+  btn.style.background = '#7A8C6E';
+  setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; }, 3000);
+}
+
+// === CONTACT ===
+function handleContact() {
+  const btn = event.target;
+  btn.textContent = 'Message Sent!';
+  btn.style.background = '#7A8C6E';
+  setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; }, 3000);
+}
+</script>
+</body>
+</html>

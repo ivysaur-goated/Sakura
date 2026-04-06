@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Groove & Soul — Where Music Meets Lifestyle</title>
+<title>Century 21 Music & More — Where Music Meets Lifestyle</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -693,7 +693,7 @@
 <nav id="navbar">
   <a href="#home" class="nav-logo">
     <div class="logo-disc"></div>
-    Groove & Soul
+    Century 21 Music & More
   </a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
@@ -724,7 +724,7 @@
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>
   <div class="hero-content">
-    <div class="hero-kicker reveal">Est. 2009 — Locally Curated</div>
+    <div class="hero-kicker reveal">Est. 1974 — Locally Curated</div>
     <h1 class="hero-h1 reveal reveal-delay-1">Where Music<br>Meets <em>Lifestyle</em></h1>
     <p class="hero-sub reveal reveal-delay-2">Rare vinyl, vintage cassettes, handmade jewelry, curated clothing, and locally grown community. This is more than a record store — it's a way of life.</p>
     <div class="hero-btns reveal reveal-delay-3">
@@ -870,6 +870,7 @@
     <button class="filter-btn" data-filter="clothing">Clothing</button>
     <button class="filter-btn" data-filter="jewelry">Jewelry</button>
     <button class="filter-btn" data-filter="incense">Incense & Herbs</button>
+    <button class="filter-btn" data-filter="local">Smoke</button>
     <button class="filter-btn" data-filter="local">Local Goods</button>
   </div>
   <div class="shop-grid" id="shopGrid">
@@ -894,13 +895,13 @@
     <div class="about-text">
       <div class="section-kicker reveal">Our story</div>
       <h2 class="section-title reveal reveal-delay-1">More Than<br>a Record Store</h2>
-      <p class="reveal reveal-delay-2" style="margin-top:1.5rem">Groove & Soul was born from a love letter to music and the communities it builds. Opened in 2009 in the heart of Nashville, we've spent over fifteen years curating the kind of space where a jazz collector, a hip-hop head, and a folk enthusiast all feel equally at home.</p>
-      <p class="reveal reveal-delay-3">Beyond vinyl, we carry locally made goods, handcrafted jewelry, vintage clothing, and artisan glass — because culture doesn't live in music alone. We partner with Nashville artists, carry their work, and platform their stories.</p>
-      <p class="reveal reveal-delay-4">This is a sanctuary for those who live with intention and collect with soul.</p>
+      <p class="reveal reveal-delay-2" style="margin-top:1.5rem">Century 21 Music & More was born from a love letter to music and the communities it builds. A family-owned and operated business Opened in 1974 in the heart of Murfreesboro, we've built  a sanctuary for music lovers, collectors, and seekers of the eclectic.</p>
+      <p class="reveal reveal-delay-3">Beyond vinyl, we carry locally made goods, handcrafted jewelry, vintage clothing, and artisan glass — because culture doesn't live in music alone. We partner with artists, carry their work, and platform their stories. Whether you're looking for music, smoking supplies, unique supplies, or just embracing the art of music, Century 21 Music & More is known for its great selection and welcoming vibe, making it a must see for both locals and visitors. </p>
+      <p class="reveal reveal-delay-4">Stop by today! Support local, stay curious, and find your next favorite thing in the heart of Murfreesboro.</p>
       <div class="about-stats reveal reveal-delay-3">
-        <div><span class="stat-num">15+</span><span class="stat-label">Years open</span></div>
-        <div><span class="stat-num">40K+</span><span class="stat-label">Records in stock</span></div>
-        <div><span class="stat-num">200+</span><span class="stat-label">Local artists</span></div>
+        <div><span class="stat-num">50+</span><span class="stat-label">Years open</span></div>
+        <div><span class="stat-num">4.7/5</span><span class="stat-label">Star eviews</span></div>
+        <div><span class="stat-num">200+</span><span class="stat-label">Selection</span></div>
       </div>
     </div>
   </div>
@@ -965,26 +966,27 @@
     <div class="testi-card reveal reveal-delay-1">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Found a first pressing I'd been hunting for three years. The staff knew exactly what I was looking for from just a vague description. This place has magic in the walls.</div>
-      <div class="testi-author">— Marcus D., Collector</div>
+      <div class="testi-text">HUGE selection, although they unfortunately didn't have what I was looking for! But owner was very nice and helpful! :D</div>
+      <div class="testi-author">— BackroadBuddy</div>
     </div>
     <div class="testi-card reveal reveal-delay-2">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Not just a record store — a whole vibe. I've bought jewelry, a vintage jacket, and about forty records here. The incense alone is worth the trip.</div>
-      <div class="testi-author">— Jade L., Regular</div>
+      <div class="testi-text">Joey is absolutely phenomenal!! He is my go to record guy. 9/10 times I go in to talk shop, and leave buying something. He also helped me figure out how to use my vintage turn tables. He’s taught me a lot. I refer to him as my Obi-Wan Kenobi for records.
+</div>
+      <div class="testi-author">— john elliott</div>
     </div>
     <div class="testi-card reveal reveal-delay-3">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Every time I visit Nashville, this is my first stop. The curation is unlike anywhere else — they stock things you didn't know you needed but immediately can't live without.</div>
-      <div class="testi-author">— Sam W., Traveler</div>
+      <div class="testi-text">Great little shop with friendly staff that has been in business for a long time from what I've been told. Nice selection of music, incense, and smoking needs. Other miscellaneous items as well like clothes, jewelry, art. Picked up a locally made ashtray and box. Cool place, check it out if you get a chance.</div>
+      <div class="testi-author">— Tips ToaBetterLife</div>
     </div>
     <div class="testi-card reveal reveal-delay-1">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">My daughter and I come every weekend. She's 19 and completely hooked on vinyl now. This store turned her into a collector. That's the power of this place.</div>
-      <div class="testi-author">— Renee M., Parent</div>
+      <div class="testi-text">Staff is friendly, you can carry on a conversation with them but if you dont want to they'll let you be. Good selection of records and glass, such a neat little store and good vibes. Murfreesboro's best kept secret.</div>
+      <div class="testi-author">— Chason Porch</div>
     </div>
   </div>
 </section>
@@ -1051,7 +1053,7 @@
         </div>
         <div class="contact-detail-text">
           <span>Address</span>
-          <p>114 2nd Ave S<br>Nashville, TN 37201</p>
+          <p>125 Lasseter Dr<br>Murfreesboro, TN 37130</p>
         </div>
       </div>
       <div class="contact-detail">
@@ -1060,7 +1062,7 @@
         </div>
         <div class="contact-detail-text">
           <span>Hours</span>
-          <p>Mon–Sat: 10am – 8pm<br>Sunday: 11am – 6pm</p>
+          <p>Mon–Fri: 12pm – 7pm<br>Saturday: 11am – 7pm<br>Sunday: Closed</p>
         </div>
       </div>
       <div class="contact-detail">
@@ -1069,7 +1071,7 @@
         </div>
         <div class="contact-detail-text">
           <span>Phone</span>
-          <p>(615) 555-0192</p>
+          <p>(615) 890-9168</p>
         </div>
       </div>
       <div class="map-placeholder">
@@ -1081,8 +1083,8 @@
           <line x1="0" y1="100" x2="400" y2="100" stroke="#c9b89a" stroke-width="1"/>
           <circle cx="200" cy="100" r="12" fill="#C9622A"/>
           <circle cx="200" cy="100" r="5" fill="white"/>
-          <text x="216" y="96" font-family="monospace" font-size="11" fill="#3d2b1f">Groove & Soul</text>
-          <text x="216" y="110" font-family="monospace" font-size="9" fill="#8a7a6a">114 2nd Ave S, Nashville</text>
+          <text x="216" y="96" font-family="monospace" font-size="11" fill="#3d2b1f">Century 21 Music & More</text>
+          <text x="216" y="110" font-family="monospace" font-size="9" fill="#8a7a6a">125 Lasseter Dr, Murfreesboro Tn 37130</text>
         </svg>
       </div>
       <a href="https://maps.google.com" target="_blank" class="btn-primary" style="display:inline-block; margin-top:1rem;">Get Directions</a>
@@ -1122,7 +1124,7 @@
     <div class="footer-brand">
       <a href="#home" class="nav-logo" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--cream);">
         <div class="logo-disc"></div>
-        <span style="font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900;">Groove & Soul</span>
+        <span style="font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900;">Century 21 Music & More</span>
       </a>
       <p>A music and lifestyle shop rooted in Nashville culture. Vinyl, cassettes, clothing, jewelry, glass, and locally made goods — curated with intention.</p>
     </div>
@@ -1150,7 +1152,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Groove & Soul. All rights reserved. Nashville, TN.</p>
+    <p>© 2026 Century 21 Music & More. All rights reserved. Nashville, TN.</p>
     <div class="social-links">
       <a href="#" class="social-link" title="Instagram">ig</a>
       <a href="#" class="social-link" title="Facebook">fb</a>
@@ -1211,7 +1213,7 @@ const products = [
   { cat: 'records', name: 'Marvin Gaye — What\'s Going On', desc: 'Tamla label original, 1971. VG+ condition. Socially charged soul at its finest.', price: '$75', badge: 'Popular' },
   { cat: 'tapes', name: 'Prince — Purple Rain Cassette', desc: 'Original 1984 Warner Bros cassette, chrome tape. Mint condition in original shell.', price: '$28', badge: 'Rare' },
   { cat: 'tapes', name: 'Various — 90s R&B Mix CDs', desc: 'Locally curated mix CDs by our in-house DJs. Each one is one-of-a-kind. Limited run.', price: '$12' },
-  { cat: 'clothing', name: 'Groove & Soul Crewneck', desc: 'Heavyweight 100% cotton crewneck in cream and deep brown. Embroidered chest logo. Made locally.', price: '$55' },
+  { cat: 'clothing', name: 'Century 21 Music & More Crewneck', desc: 'Heavyweight 100% cotton crewneck in cream and deep brown. Embroidered chest logo. Made locally.', price: '$55' },
   { cat: 'clothing', name: 'Vintage Band Tee — Assorted', desc: 'Pre-loved vintage tees curated by our buyers. Every piece different. Sizes S–XL available.', price: '$22', badge: 'Vintage' },
   { cat: 'jewelry', name: 'Record Groove Ring', desc: 'Sterling silver ring with concentric groove etching by Nashville jeweler Zoe Hartwell.', price: '$68' },
   { cat: 'jewelry', name: 'Cassette Tape Pendant', desc: 'Bronze-cast cassette tape on a 16" box chain. Handmade in small batches of 20.', price: '$44', badge: 'Handmade' },

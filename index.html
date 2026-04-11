@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Volt | Premier Electrician in Murfreesboro, TN</title>
+<meta name="description" content="Murfreesboro's most trusted electrician. From ceiling fans to whole-house generator installation in Tennessee, Mr. Volt delivers expert, code-compliant electrical work.">
+<meta name="keywords" content="Murfreesboro Electrician, whole-house generator installation Tennessee, new home electrical planning, licensed electrician Murfreesboro TN">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --electric: #1A9FFF;
+  --electric-dark: #0D7ACC;
+  --electric-glow: rgba(26,159,255,0.25);
+  --yellow: #FFD000;
+  --yellow-dark: #E6BB00;
+  --slate: #1C2733;
+  --slate-mid: #2D3D4F;
+  --slate-light: #3D5268;
+  --grey: #8A9BB0;
+  --light: #EEF2F7;
+  --white: #FFFFFF;
+  --danger: #FF4D4D;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--slate);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── HEADER ─────────────────────────────────────── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(17, 28, 38, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(26,159,255,0.2);
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-bolt {
+  width: 32px;
+  height: 32px;
+  background: var(--yellow);
+  clip-path: polygon(60% 0%, 40% 45%, 70% 45%, 40% 100%, 60% 55%, 30% 55%);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  line-height: 1;
+}
+
+.logo-text span { color: var(--yellow); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tel-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--electric);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.tel-link svg { flex-shrink: 0; }
+
+@media (max-width: 480px) { .tel-link .tel-text { display: none; } }
+
+.btn-book {
+  background: var(--yellow);
+  color: var(--slate);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-book:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+
+/* ─── HERO ────────────────────────────────────────── */
+.hero {
+  min-height: 100svh;
+  padding-top: 64px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 40%, rgba(26,159,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(255,208,0,0.06) 0%, transparent 60%),
+    linear-gradient(160deg, #0D1820 0%, #1C2733 50%, #0D1820 100%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,159,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,159,255,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,208,0,0.12);
+  border: 1px solid rgba(255,208,0,0.4);
+  color: var(--yellow);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--electric);
+  display: block;
+}
+
+.hero h1 .accent { color: var(--yellow); }
+
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--grey);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+
+.btn-primary {
+  background: var(--electric);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--electric-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--electric-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  padding: 0.85rem 1.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(--electric); color: var(--electric); }
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+
+.stat-item { line-height: 1.2; }
+
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: var(--yellow);
+  display: block;
+}
+
+.stat-label { font-size: 0.85rem; color: var(--grey); }
+
+/* ─── SECTION SHARED ──────────────────────────────── */
+section { padding: 5rem 1.5rem; }
+.container { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.section-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--electric);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.section-title span { color: var(--electric); }
+.section-title .yellow { color: var(--yellow); }
+
+/* ─── PROCESS ─────────────────────────────────────── */
+.process-section {
+  background: linear-gradient(135deg, #111D27 0%, #1C2733 100%);
+  border-top: 1px solid rgba(26,159,255,0.15);
+  border-bottom: 1px solid rgba(26,159,255,0.15);
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.process-card {
+  position: relative;
+  padding: 2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.process-card:hover {
+  border-color: rgba(26,159,255,0.3);
+  background: rgba(26,159,255,0.04);
+}
+
+.process-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1;
+  color: rgba(26,159,255,0.15);
+  margin-bottom: 0.75rem;
+  transition: color 0.3s;
+}
+
+.process-card:hover .process-num { color: rgba(26,159,255,0.3); }
+
+.process-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--electric);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+.process-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+.process-card p { font-size: 0.95rem; color: var(--grey); line-height: 1.6; }
+
+/* ─── SERVICES / JOB EXPLORER ─────────────────────── */
+.services-section { background: var(--slate); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: var(--slate-mid);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 1.75rem;
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--electric), var(--yellow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.service-card:hover::before, .service-card:focus::before { transform: scaleX(1); }
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26,159,255,0.3);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(26,159,255,0.1);
+}
+
+.service-card:focus { outline: 2px solid var(--electric); outline-offset: 2px; }
+
+.service-icon-wrap {
+  width: 52px; height: 52px;
+  background: rgba(26,159,255,0.1);
+  border: 1px solid rgba(26,159,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+  transition: background 0.25s;
+}
+
+.service-card:hover .service-icon-wrap { background: rgba(26,159,255,0.2); }
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.4rem;
+}
+
+.service-card p { font-size: 0.88rem; color: var(--grey); line-height: 1.5; margin-bottom: 1rem; }
+
+.service-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.service-cta {
+  position: absolute;
+  right: 1.75rem;
+  bottom: 1.75rem;
+  color: var(--electric);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s, transform 0.25s;
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.service-card:hover .service-cta { opacity: 1; transform: translateX(0); }
+
+/* ─── MODAL ───────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8,16,24,0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(6px);
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--slate-mid);
+  border: 1px solid rgba(26,159,255,0.25);
+  max-width: 760px;
+  width: 100%;
+  max-height: 90svh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  z-index: 5;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--white);
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+
+.modal-close:hover { background: rgba(255,255,255,0.15); }
+
+.modal-gallery {
+  height: 240px;
+  background: var(--slate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--slate-light);
+}
+
+.gallery-label {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  background: var(--yellow);
+  color: var(--slate);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+}
+
+.modal-body { padding: 1.75rem; }
+
+.modal-header { margin-bottom: 1.5rem; }
+
+.modal-tag {
+  display: inline-block;
+  background: rgba(26,159,255,0.15);
+  color: var(--electric);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.modal-desc { color: var(--grey); font-size: 0.95rem; line-height: 1.65; }
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 540px) { .modal-grid { grid-template-columns: 1fr; } }
+
+.modal-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.25rem;
+}
+
+.modal-box-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 0.5rem;
+}
+
+.modal-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.modal-box ul li {
+  font-size: 0.88rem;
+  color: var(--grey);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.modal-box ul li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  color: var(--electric);
+  font-size: 0.8rem;
+}
+
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: rgba(255,208,0,0.06);
+  border: 1px solid rgba(255,208,0,0.2);
+  padding: 1.1rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.price-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.price-value {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.price-note { font-size: 0.8rem; color: var(--grey); }
+
+/* ─── NEW BUILD TOOL ──────────────────────────────── */
+.newbuild-section {
+  background: linear-gradient(160deg, #0D1820 0%, #142030 100%);
+  border-top: 1px solid rgba(26,159,255,0.1);
+}
+
+.newbuild-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) { .newbuild-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.newbuild-checklist {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.checklist-header {
+  background: var(--electric);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.checklist-room {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.checklist-room-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  padding: 0.9rem 1.5rem 0.4rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.checklist-item:hover { background: rgba(26,159,255,0.06); }
+
+.checklist-item input[type="checkbox"] {
+  accent-color: var(--electric);
+  width: 16px; height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checklist-item label {
+  font-size: 0.88rem;
+  color: var(--grey);
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.checklist-item input:checked + label { color: var(--white); }
+
+.checklist-summary {
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(26,159,255,0.05);
+  font-size: 0.85rem;
+  color: var(--grey);
+}
+
+#checklist-count {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--electric);
+}
+
+/* .newbuild-info { } */
+
+.newbuild-info p { color: var(--grey); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+.newbuild-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nb-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.nb-step-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--electric);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+}
+
+.nb-step-text h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.nb-step-text p { font-size: 0.88rem; color: var(--grey); line-height: 1.5; margin-bottom: 0; }
+
+/* ─── TEAM ────────────────────────────────────────── */
+.team-section { background: var(--slate); }
+
+.team-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.team-card {
+  background: var(--slate-mid);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 2rem 1.75rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.team-card:hover {
+  border-color: rgba(26,159,255,0.25);
+  transform: translateY(-3px);
+}
+
+.team-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--electric), var(--yellow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.team-card:hover::after { transform: scaleX(1); }
+
+.team-avatar {
+  width: 72px; height: 72px;
+  background: var(--slate-light);
+  border: 2px solid rgba(26,159,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: var(--electric);
+  border-radius: 50%;
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+
+.team-role {
+  font-size: 0.8rem;
+  color: var(--electric);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.team-bio { font-size: 0.88rem; color: var(--grey); line-height: 1.55; margin-bottom: 1rem; }
+
+.team-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255,208,0,0.1);
+  border: 1px solid rgba(255,208,0,0.3);
+  color: var(--yellow);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+}
+
+/* ─── TESTIMONIALS ────────────────────────────────── */
+.testimonials-section {
+  background: linear-gradient(135deg, #111D27 0%, #1C2733 100%);
+  overflow: hidden;
+}
+
+.wall-label {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.08);
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+}
+
+.testimonial-scroller {
+  display: flex;
+  gap: 1.25rem;
+  animation: scroll 40s linear infinite;
+  width: max-content;
+}
+
+.testimonial-scroller:hover { animation-play-state: paused; }
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.testimonial-card {
+  background: var(--slate-mid);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 1.5rem;
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.t-stars {
+  color: var(--yellow);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.t-text {
+  font-size: 0.9rem;
+  color: var(--grey);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.t-author {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.t-location { font-size: 0.78rem; color: var(--slate-light); }
+
+/* ─── FOOTER ──────────────────────────────────────── */
+footer {
+  background: #0B1520;
+  border-top: 1px solid rgba(26,159,255,0.15);
+  padding: 3rem 1.5rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+
+.footer-info p {
+  font-size: 0.9rem;
+  color: var(--grey);
+  max-width: 360px;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+@media (max-width: 600px) { .footer-contact { align-items: flex-start; } }
+
+.footer-contact a {
+  color: var(--grey);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-contact a:hover { color: var(--electric); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cleanup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26,159,255,0.08);
+  border: 1px solid rgba(26,159,255,0.2);
+  color: var(--electric);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+}
+
+.footer-copy { font-size: 0.8rem; color: var(--slate-light); }
+
+/* ─── SCROLL-TO-TOP ───────────────────────────────── */
+.scroll-top {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  z-index: 50;
+  width: 44px; height: 44px;
+  background: var(--electric);
+  border: none;
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+.scroll-top.visible { opacity: 1; transform: translateY(0); }
+.scroll-top:hover { background: var(--electric-dark); }
+
+/* ─── UTILITIES ───────────────────────────────────── */
+.scroller-fade {
+  -webkit-mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo" aria-label="Mr. Volt Home">
+    <div class="logo-bolt" aria-hidden="true"></div>
+    <span class="logo-text">Mr.<span>Volt</span></span>
+  </a>
+  <div class="header-actions">
+    <a href="tel:6155550199" class="tel-link" aria-label="Call Mr. Volt">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span class="tel-text">(615) 555-0199</span>
+    </a>
+    <a href="#contact" class="btn-book">Book Now ⚡</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Licensed &amp; Insured · Murfreesboro, TN
+    </div>
+    <h1>
+      Powering Murfreesboro
+      <em>with Precision &amp;</em>
+      <span class="accent">Professionalism.</span>
+    </h1>
+    <p class="hero-sub">From ceiling fans to whole-house generators, Mateo and the team have you covered — fast, clean, and always up to code.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Explore Services
+      </a>
+      <a href="tel:6155550199" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Quick Response Call
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Jobs Completed</span></div>
+      <div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-label">Average Rating</span></div>
+      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Code Compliant</span></div>
+      <div class="stat-item"><span class="stat-num">0</span><span class="stat-label">Messes Left Behind</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-label">How We Work</div>
+    <h2 class="section-title" id="process-heading">The Mr. Volt <span>Process</span></h2>
+    <p style="color:var(--grey);max-width:520px;line-height:1.65;font-size:0.95rem;">Three steps. No surprises. Every single time.</p>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-num" aria-hidden="true">01</div>
+        <div class="process-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Swift Response</h3>
+        <p>We answer fast and get you booked in — often same-week. No waiting around, no runaround. Your time is valuable.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num" aria-hidden="true">02</div>
+        <div class="process-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Expert Install</h3>
+        <p>Punctual arrival, safe execution, and code-compliant workmanship. Our licensed pros treat your home like their own.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num" aria-hidden="true">03</div>
+        <div class="process-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Spotless Exit</h3>
+        <p>We leave your home cleaner than we found it. Every scrap, every bit of wire, every drop cloth — gone. That's the promise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / JOB EXPLORER -->
+<section class="services-section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-label">Interactive Job Explorer</div>
+    <h2 class="section-title" id="services-heading">Tap a Job. <span>See the Details.</span></h2>
+    <p style="color:var(--grey);max-width:520px;line-height:1.65;font-size:0.95rem;margin-bottom:0;">Every card reveals photos, the Mr. Volt guarantee, and transparent pricing. No guesswork.</p>
+    <div class="services-grid" role="list">
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('generator')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('generator')" aria-label="Whole-House Generator - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3>Whole-House Generator</h3>
+        <p>Permanent standby power — installed, permitted, and inspected for code compliance.</p>
+        <div class="service-price">⚡ Starting at $3,500</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('panel')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('panel')" aria-label="Panel Upgrade - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="21" x2="8" y2="3"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+        </div>
+        <h3>Panel Upgrade</h3>
+        <p>200-amp panel replacements and upgrades to handle modern electrical demands safely.</p>
+        <div class="service-price">⚡ Starting at $1,800</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('fan')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('fan')" aria-label="Ceiling Fan Install - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3c-4.5 0-8 1.5-8 3s3.5 3 8 3 8-1.5 8-3-3.5-3-8-3z"/><path d="M3 12c0 4.5 1.5 8 3 8s3-3.5 3-8-1.5-8-3-8-3 3.5-3 8z"/></svg>
+        </div>
+        <h3>Ceiling Fan Install</h3>
+        <p>Swap, upgrade, or add ceiling fans in any room. New box installation included.</p>
+        <div class="service-price">⚡ Starting at $150</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('ev')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('ev')" aria-label="EV Charger Install - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/></svg>
+        </div>
+        <h3>EV Charger Install</h3>
+        <p>Level 2 home charging stations installed fast. Works with all major EV brands.</p>
+        <div class="service-price">⚡ Starting at $400</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('outlets')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('outlets')" aria-label="Outlets and Switches - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="6" rx="1"/><circle cx="9" cy="14" r="2"/><circle cx="15" cy="14" r="2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="9" y1="18" x2="9" y2="22"/><line x1="15" y1="18" x2="15" y2="22"/></svg>
+        </div>
+        <h3>Outlets &amp; Switches</h3>
+        <p>Additions, replacements, GFCI upgrades, USB outlets, smart switches — all covered.</p>
+        <div class="service-price">⚡ Starting at $85</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('lighting')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('lighting')" aria-label="Recessed Lighting - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </div>
+        <h3>Recessed Lighting</h3>
+        <p>Transform any room with clean, modern recessed LED lighting — wired right the first time.</p>
+        <div class="service-price">⚡ Starting at $75/can</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('surge')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('surge')" aria-label="Whole-Home Surge Protection - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Whole-Home Surge Protection</h3>
+        <p>Protect every appliance in your home from damaging voltage spikes — one affordable install.</p>
+        <div class="service-price">⚡ Starting at $250</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+      <div class="service-card" role="listitem" tabindex="0" onclick="openModal('newbuild')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('newbuild')" aria-label="New Construction Wiring - tap to view details">
+        <div class="service-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>New Construction Wiring</h3>
+        <p>Full rough-in, trim-out, and final inspection for new builds in Murfreesboro and surrounding areas.</p>
+        <div class="service-price">⚡ Custom Quote</div>
+        <span class="service-cta">View Details →</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEW BUILD PLANNING TOOL -->
+<section class="newbuild-section" id="newbuild" aria-labelledby="newbuild-heading">
+  <div class="container">
+    <div class="newbuild-inner">
+      <div class="newbuild-info">
+        <div class="section-label">New Homeowner Tool</div>
+        <h2 class="section-title" id="newbuild-heading">New Build <span>Planning</span></h2>
+        <p>Building in Murfreesboro? Mr. Volt works directly with your contractor from day one — ensuring every outlet, switch, and fixture is exactly where you need it before the walls go up.</p>
+        <p>Use our interactive checklist to start planning your electrical layout. When you're ready, we'll turn it into a full estimate.</p>
+        <div class="newbuild-steps">
+          <div class="nb-step">
+            <span class="nb-step-num">1</span>
+            <div class="nb-step-text">
+              <h4>Pre-Wire Consultation</h4>
+              <p>We walk the framed structure with you and your contractor to map every circuit.</p>
+            </div>
+          </div>
+          <div class="nb-step">
+            <span class="nb-step-num">2</span>
+            <div class="nb-step-text">
+              <h4>Rough-In Inspection Ready</h4>
+              <p>All wiring labeled, documented, and ready for the city inspector — first time, every time.</p>
+            </div>
+          </div>
+          <div class="nb-step">
+            <span class="nb-step-num">3</span>
+            <div class="nb-step-text">
+              <h4>Trim-Out &amp; Final</h4>
+              <p>All devices, fixtures, and panel work finished before your certificate of occupancy.</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <a href="#contact" class="btn-primary" style="margin-top:0.5rem;display:inline-flex;">Get a New Build Quote</a>
+      </div>
+      <div>
+        <div class="newbuild-checklist" role="group" aria-labelledby="checklist-head">
+          <div class="checklist-header" id="checklist-head">🏠 New Build Electrical Planner</div>
+
+          <div class="checklist-room">
+            <div class="checklist-room-title">Kitchen</div>
+            <label class="checklist-item"><input type="checkbox"> <label>Island outlet circuits (20A each side)</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Under-cabinet lighting</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Dedicated refrigerator circuit</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Dishwasher & disposal circuits</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>GFCI protection at all counters</label></label>
+          </div>
+
+          <div class="checklist-room">
+            <div class="checklist-room-title">Living Areas</div>
+            <label class="checklist-item"><input type="checkbox"> <label>Ceiling fan pre-wires (each room)</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>TV wall outlet with in-wall conduit</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Smart switch locations</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Floor outlet (office/dining)</label></label>
+          </div>
+
+          <div class="checklist-room">
+            <div class="checklist-room-title">Outdoors &amp; Garage</div>
+            <label class="checklist-item"><input type="checkbox"> <label>EV charger circuit (50A)</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Generator transfer switch</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Outdoor GFCI outlets (front/back)</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Security / floodlight wiring</label></label>
+          </div>
+
+          <div class="checklist-room">
+            <div class="checklist-room-title">Bedrooms &amp; Baths</div>
+            <label class="checklist-item"><input type="checkbox"> <label>USB outlet on each nightstand wall</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>GFCI in all bathrooms</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Dedicated bathroom exhaust fan</label></label>
+            <label class="checklist-item"><input type="checkbox"> <label>Walk-in closet lighting</label></label>
+          </div>
+
+          <div class="checklist-summary">
+            <span>Items selected:</span>
+            <span id="checklist-count">0 / 17</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team" aria-labelledby="team-heading">
+  <div class="container">
+    <div class="section-label">Meet the Pros</div>
+    <h2 class="section-title" id="team-heading">Expertise with a <span>Neighborhood Feel</span></h2>
+    <p style="color:var(--grey);max-width:520px;line-height:1.65;font-size:0.95rem;">These aren't just electricians — they're your neighbors. Licensed, insured, and genuinely proud of every job they leave behind.</p>
+    <div class="team-carousel">
+
+      <div class="team-card">
+        <div class="team-avatar" aria-hidden="true">M</div>
+        <div class="team-name">Mateo</div>
+        <div class="team-role">Owner &amp; Master Electrician</div>
+        <p class="team-bio">Founded Mr. Volt with one mission: bring big-company quality to Murfreesboro neighborhoods. 15+ years in the trade, every job personally overseen.</p>
+        <div class="team-badge">⭐ 100+ 5-Star Reviews</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" aria-hidden="true">K</div>
+        <div class="team-name">Kaden</div>
+        <div class="team-role">Lead Electrician</div>
+        <p class="team-bio">Panel upgrades and new construction specialist. Known for arriving 10 minutes early and leaving the job site spotless every single time.</p>
+        <div class="team-badge">⭐ 75+ 5-Star Reviews</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" aria-hidden="true">G</div>
+        <div class="team-name">Giovanni</div>
+        <div class="team-role">Generator &amp; EV Specialist</div>
+        <p class="team-bio">Murfreesboro's go-to for whole-house generator installation and EV charger setups. Certified installer for major generator brands.</p>
+        <div class="team-badge">⭐ 60+ 5-Star Reviews</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" aria-hidden="true">A</div>
+        <div class="team-name">Antonio</div>
+        <div class="team-role">Service &amp; Repair Electrician</div>
+        <p class="team-bio">The troubleshooter. Antonio diagnoses complex electrical issues fast and explains everything in plain English — no upselling, ever.</p>
+        <div class="team-badge">⭐ 50+ 5-Star Reviews</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="reviews" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="section-label">Wall of Love</div>
+    <h2 class="section-title" id="reviews-heading">What Murfreesboro <span>Neighbors</span> Say</h2>
+  </div>
+  <div class="scroller-fade" style="margin-top:2.5rem;overflow:hidden;" aria-label="Scrolling testimonials">
+    <div class="testimonial-scroller" id="scroller">
+
+      <div class="testimonial-card">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-text">"Mateo and Kaden installed our whole-house generator in one day. Showed up on time, explained every step, and cleaned up perfectly. Best contractor experience I've ever had."</p>
+        <div class="t-author">Jennifer R.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-text">"Antonio diagnosed an electrical gremlin that two other electricians couldn't find. Fixed it in under an hour. Mr. Volt is our electrician for life."</p>
+        <div class="t-author">Marcus T.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-text">"Giovanni installed our Tesla Wall Connector and the new 50-amp circuit. Super fast, super clean. Already recommended Mr. Volt to four neighbors."</p>
+        <div class="t-author">Sarah &amp; David K.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-text">"Had Mr. Volt wire our new build from rough-in to final inspection. Passed first time. The planning consultation alone was worth it — Mateo caught things our contractor missed."</p>
+        <div class="t-author">The Williamson Family</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-text">"Kaden installed 18 recessed lights in our great room. The spacing is perfect, the finish is immaculate, and not a single piece of dust was left. Incredible work."</p>
+        <div class="t-author">Patricia M.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-text">"These guys treated my 90-year-old mother's house like it was their own. Upgraded her panel, added GFCI outlets, and were so respectful the whole time. 10/10."</p>
+        <div class="t-author">Thomas B.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+      <!-- Duplicate for infinite scroll -->
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Mateo and Kaden installed our whole-house generator in one day. Showed up on time, explained every step, and cleaned up perfectly. Best contractor experience I've ever had."</p>
+        <div class="t-author">Jennifer R.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Antonio diagnosed an electrical gremlin that two other electricians couldn't find. Fixed it in under an hour. Mr. Volt is our electrician for life."</p>
+        <div class="t-author">Marcus T.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Giovanni installed our Tesla Wall Connector and the new 50-amp circuit. Super fast, super clean. Already recommended Mr. Volt to four neighbors."</p>
+        <div class="t-author">Sarah &amp; David K.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Had Mr. Volt wire our new build from rough-in to final inspection. Passed first time. The planning consultation alone was worth it — Mateo caught things our contractor missed."</p>
+        <div class="t-author">The Williamson Family</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Kaden installed 18 recessed lights in our great room. The spacing is perfect, the finish is immaculate, and not a single piece of dust was left. Incredible work."</p>
+        <div class="t-author">Patricia M.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"These guys treated my 90-year-old mother's house like it was their own. Upgraded her panel, added GFCI outlets, and were so respectful the whole time. 10/10."</p>
+        <div class="t-author">Thomas B.</div>
+        <div class="t-location">Murfreesboro, TN</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / BOOK -->
+<section id="contact" style="background:#0B1520;border-top:1px solid rgba(26,159,255,0.15);" aria-labelledby="contact-heading">
+  <div class="container" style="max-width:640px;">
+    <div class="section-label">Book Your Service</div>
+    <h2 class="section-title" id="contact-heading">Ready to Get <span>Started?</span></h2>
+    <p style="color:var(--grey);line-height:1.65;font-size:0.95rem;margin-bottom:2.5rem;">Call or text for the fastest response. For non-urgent requests, fill out the form and we'll get back to you within the hour during business hours.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+      <a href="tel:6155550199" class="btn-primary" style="font-size:1.05rem;padding:1rem 2rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call (615) 555-0199
+      </a>
+      <a href="sms:6155550199" class="btn-secondary" style="font-size:1.05rem;padding:1rem 1.75rem;">
+        💬 Text Us
+      </a>
+    </div>
+
+    <div style="background:var(--slate-mid);border:1px solid rgba(255,255,255,0.07);padding:2rem;">
+      <form onsubmit="handleForm(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+          <div>
+            <label for="f-name" style="display:block;font-size:0.8rem;color:var(--grey);margin-bottom:0.4rem;font-family:var(--font-display);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Name</label>
+            <input id="f-name" type="text" placeholder="Your name" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:0.7rem 0.9rem;font-size:0.95rem;font-family:var(--font-body);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+          <div>
+            <label for="f-phone" style="display:block;font-size:0.8rem;color:var(--grey);margin-bottom:0.4rem;font-family:var(--font-display);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Phone</label>
+            <input id="f-phone" type="tel" placeholder="(615) 000-0000" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:0.7rem 0.9rem;font-size:0.95rem;font-family:var(--font-body);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label for="f-service" style="display:block;font-size:0.8rem;color:var(--grey);margin-bottom:0.4rem;font-family:var(--font-display);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Service Needed</label>
+          <select id="f-service" style="width:100%;background:var(--slate);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:0.7rem 0.9rem;font-size:0.95rem;font-family:var(--font-body);outline:none;appearance:none;cursor:pointer;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <option value="">Select a service…</option>
+            <option>Whole-House Generator</option>
+            <option>Panel Upgrade</option>
+            <option>Ceiling Fan Install</option>
+            <option>EV Charger Install</option>
+            <option>Outlets &amp; Switches</option>
+            <option>Recessed Lighting</option>
+            <option>Whole-Home Surge Protection</option>
+            <option>New Construction Wiring</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div style="margin-bottom:1.25rem;">
+          <label for="f-msg" style="display:block;font-size:0.8rem;color:var(--grey);margin-bottom:0.4rem;font-family:var(--font-display);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Message</label>
+          <textarea id="f-msg" rows="3" placeholder="Tell us about your project…" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:0.7rem 0.9rem;font-size:0.95rem;font-family:var(--font-body);outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;font-size:1.05rem;padding:1rem;">Send Request ⚡</button>
+        <p id="form-success" style="display:none;text-align:center;color:var(--electric);font-family:var(--font-display);font-weight:700;font-size:1rem;margin-top:1rem;letter-spacing:0.04em;">✓ Request Sent! We'll call you within the hour.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-info">
+        <a href="#" class="logo" style="text-decoration:none;" aria-label="Mr. Volt">
+          <div class="logo-bolt" aria-hidden="true"></div>
+          <span class="logo-text">Mr.<span>Volt</span></span>
+        </a>
+        <p>Murfreesboro's premier electrical contractor. Licensed, insured, and committed to punctuality, safety, and spotless workmanship on every job.</p>
+      </div>
+      <div class="footer-contact">
+        <a href="tel:6155550199">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (615) 555-0199
+        </a>
+        <a href="mailto:hello@mrvolt.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          hello@mrvolt.com
+        </a>
+        <span style="font-size:0.85rem;color:var(--grey);">Murfreesboro, TN 37129</span>
+        <span style="font-size:0.8rem;color:var(--slate-light);">Mon–Sat 7am–7pm · Emergency Available</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="cleanup-badge" role="img" aria-label="Mr. Volt Cleanup Guarantee: We always leave your home cleaner than we found it">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        We ALWAYS Clean Up
+      </div>
+      <span class="footer-copy">© 2025 Mr. Volt Electrical LLC · Murfreesboro, TN · Licensed &amp; Insured</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-el" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close modal">✕</button>
+    <div class="modal-gallery">
+      <div class="gallery-label" id="modal-gallery-label">Before &amp; After</div>
+      <div class="gallery-placeholder" id="modal-gallery-icon" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="font-size:0.8rem;font-family:var(--font-display);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Action Photos Go Here</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-header">
+        <div class="modal-tag" id="modal-tag"></div>
+        <h3 class="modal-title" id="modal-title-el"></h3>
+        <p class="modal-desc" id="modal-desc"></p>
+      </div>
+      <div class="modal-grid">
+        <div class="modal-box">
+          <div class="modal-box-label">⚡ Mr. Volt Guarantee</div>
+          <ul id="modal-guarantee"></ul>
+        </div>
+        <div class="modal-box">
+          <div class="modal-box-label">✓ What's Included</div>
+          <ul id="modal-includes"></ul>
+        </div>
+      </div>
+      <div class="modal-price-row">
+        <div>
+          <div class="price-label">Starting At</div>
+          <div class="price-value" id="modal-price"></div>
+          <div class="price-note" id="modal-note"></div>
+        </div>
+        <a href="#contact" class="btn-primary" onclick="closeModal()" style="text-decoration:none;">Get a Quote ⚡</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── SERVICE DATA ──────────────────────────────────────────────
+const services = {
+  generator: {
+    tag: 'Most Popular',
+    title: 'Whole-House Generator Installation',
+    desc: 'Never lose power again. Mr. Volt installs permanent standby generators that automatically kick on within seconds of a power outage — protecting your home, your food, your HVAC, and your family.',
+    guarantee: ['Permitted & inspected by city', 'Utility transfer switch installed', 'Load calculation provided', 'Propane or natural gas options'],
+    includes: ['Site assessment & sizing', 'Concrete pad placement', 'Automatic transfer switch', 'Full startup & testing', '1-year labor warranty'],
+    price: '$3,500+',
+    note: 'Final price depends on generator size & fuel source'
+  },
+  panel: {
+    tag: 'Safety Upgrade',
+    title: 'Electrical Panel Upgrade',
+    desc: 'Older panels can\'t keep up with modern homes. Mr. Volt upgrades your panel to 200-amp service, ensuring you can run everything safely — from EV chargers to whole-home A/C.',
+    guarantee: ['Meets 2023 NEC code standards', 'New breakers, not reconditioned', 'Utility coordination handled', 'Pull permit every time'],
+    includes: ['Panel removal & replacement', 'New circuit breakers', 'Ground & bonding inspection', 'Permit pulled & inspection', 'Workspace fully cleaned'],
+    price: '$1,800+',
+    note: 'Includes all labor, materials & permit fees'
+  },
+  fan: {
+    tag: 'Quick Install',
+    title: 'Ceiling Fan Installation',
+    desc: 'From a simple fan swap to a full new ceiling box in a room that\'s never had one, Mr. Volt handles it all. We install braced boxes and make sure your fan is balanced and safely mounted.',
+    guarantee: ['Fan-rated box installed or verified', 'All connections inspected', 'Proper load tested', 'Blades balanced on exit'],
+    includes: ['Remove old fan or fixture', 'Install fan-rated box if needed', 'Full wiring & connections', 'Remote/dimmer setup', 'Test all speeds & light'],
+    price: '$150+',
+    note: 'Per fan. New box installation extra if required'
+  },
+  ev: {
+    tag: 'Growing Fast',
+    title: 'EV Charger Installation',
+    desc: 'Charge your EV overnight at home the right way — with a dedicated 50-amp circuit and Level 2 EVSE that\'s code compliant and ready for any make or model.',
+    guarantee: ['50-amp dedicated circuit', 'Proper outdoor weatherproofing', 'Meets NEC 625 code', 'Works with all EV brands'],
+    includes: ['Circuit run from panel', 'NEMA 14-50 outlet or hardwired EVSE', 'Weather-rated enclosure', 'Permit pulled if required', 'Load capacity check'],
+    price: '$400+',
+    note: 'Varies by distance from panel to garage'
+  },
+  outlets: {
+    tag: 'Quick & Clean',
+    title: 'Outlets & Switches',
+    desc: 'Whether you need a new outlet in a tricky spot, a GFCI upgrade in the kitchen, or smart switches throughout the house, Mr. Volt gets it done neatly and to code.',
+    guarantee: ['GFCI where required by code', 'Tamper-resistant where required', 'Proper wire gauge matched', 'No "daisy-chaining" shortcuts'],
+    includes: ['New outlet or switch install', 'Existing circuit extended', 'GFCI/AFCI where needed', 'Cover plates & cleanup', 'Full function test'],
+    price: '$85+',
+    note: 'Per device. Bundle pricing available'
+  },
+  lighting: {
+    tag: 'Room Transformer',
+    title: 'Recessed Lighting Installation',
+    desc: 'Clean, modern recessed lighting transforms any space. Mr. Volt spaces your cans perfectly, installs airtight boxes, and wires everything to a properly rated circuit with dimmer control.',
+    guarantee: ['IC-rated cans in insulated ceilings', 'Proper spacing calculated', 'Dimmer-compatible LED trim', 'Attic access restored & clean'],
+    includes: ['Layout planning & spacing', 'Airtight box installation', 'Wiring & circuit connection', 'Dimmer switch included', 'Ceiling patching if needed'],
+    price: '$75/can',
+    note: 'Minimum 4-can jobs. Dimmer switch included.'
+  },
+  surge: {
+    tag: 'Smart Investment',
+    title: 'Whole-Home Surge Protection',
+    desc: 'A single lightning strike or utility surge can destroy thousands of dollars in electronics. A whole-home SPD at the panel costs less than one ruined appliance and protects everything at once.',
+    guarantee: ['UL 1449 listed device only', 'Installed directly at panel', 'kA rating matched to your home', '2-year device warranty backed'],
+    includes: ['Surge protective device (SPD)', 'Panel installation & connections', 'kA rating recommendation', 'Before/after breaker check', 'Certificate of installation'],
+    price: '$250+',
+    note: 'Includes parts & labor. Most installs under 1 hour.'
+  },
+  newbuild: {
+    tag: 'New Construction',
+    title: 'New Construction Wiring',
+    desc: 'Mr. Volt partners with builders and homeowners throughout the Murfreesboro area to deliver complete rough-in, trim-out, and final inspection electrical for new builds. We\'re on your schedule.',
+    guarantee: ['Pre-wire consultation included', 'First-time inspection pass rate: 100%', 'Permitted every project', 'Coordinated with your GC'],
+    includes: ['Pre-wire planning walk', 'Full rough-in wiring', 'Panel installation', 'Trim-out (devices & fixtures)', 'Final inspection ready'],
+    price: 'Custom Quote',
+    note: 'Contact us for new construction pricing'
+  }
+};
+
+// ─── MODAL ─────────────────────────────────────────────────────
+function openModal(id) {
+  const s = services[id];
+  if (!s) return;
+  document.getElementById('modal-tag').textContent = s.tag;
+  document.getElementById('modal-title-el').textContent = s.title;
+  document.getElementById('modal-desc').textContent = s.desc;
+  document.getElementById('modal-price').textContent = s.price;
+  document.getElementById('modal-note').textContent = s.note;
+
+  const gEl = document.getElementById('modal-guarantee');
+  gEl.innerHTML = s.guarantee.map(g => `<li>${g}</li>`).join('');
+
+  const iEl = document.getElementById('modal-includes');
+  iEl.innerHTML = s.includes.map(i => `<li>${i}</li>`).join('');
+
+  const overlay = document.getElementById('modal');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-box').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ─── CHECKLIST COUNTER ─────────────────────────────────────────
+document.querySelectorAll('.checklist-item input').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const total = document.querySelectorAll('.checklist-item input').length;
+    const checked = document.querySelectorAll('.checklist-item input:checked').length;
+    document.getElementById('checklist-count').textContent = `${checked} / ${total}`;
+  });
+});
+// ─── SCROLL TO TOP ─────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  if (window.scrollY > 400) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+}, { passive: true });
+
+//─── FORM ──────────────────────────────────────────────────────
+function handleForm(e) {
+  e.preventDefault();
+  const success = document.getElementById('form-success');
+  success.style.display = 'block';
+  e.target.querySelectorAll('input,textarea,select,button[type=submit]').forEach(el => el.disabled = true);
+}
+</script>
+</body>
+</html>
+

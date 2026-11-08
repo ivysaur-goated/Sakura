@@ -1,0 +1,439 @@
+
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sakura Booking</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: booking app. Left column is a four-step flow (trip, month and travelers, details, review). Right column is a sticky price summary that updates live. */
+:root {
+  --bg: #fbf4f1;
+  --fg: #2e1f26;
+  --muted: #6c5560;
+  --panel: #f6e0e7;
+  --panel-2: #fff9f7;
+  --line: #e7cfd6;
+  --red: #b8322b;
+  --red-ink: #b8322b;
+  --rose: #d98aa5;
+  --rose-ink: #a3416a;
+  --gold: #c9a56a;
+  --gold-ink: #86672a;
+  --on-red: #ffffff;
+  --err: #a8200f;
+  --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1217; --fg: #f5e8ec; --muted: #c2aab4; --panel: #2a1b23; --panel-2: #231720; --line: #43303a;
+    --red: #d9473e; --red-ink: #f08377; --rose: #d98aa5; --rose-ink: #eba6bd; --gold: #c9a56a; --gold-ink: #dbbb80;
+    --on-red: #ffffff; --err: #ff9a8c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1217; --fg: #f5e8ec; --muted: #c2aab4; --panel: #2a1b23; --panel-2: #231720; --line: #43303a;
+  --red: #d9473e; --red-ink: #f08377; --rose: #d98aa5; --rose-ink: #eba6bd; --gold: #c9a56a; --gold-ink: #dbbb80;
+  --on-red: #ffffff; --err: #ff9a8c; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+.wrap { max-width: 1080px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); }
+h2 { font-size: clamp(1.4rem, 2.6vw, 1.8rem); }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--rose-ink); outline-offset: 3px; border-radius: 6px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 14px; gap: 12px; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; }
+.brand span { color: var(--rose-ink); margin-left: 8px; font-size: 1.1rem; }
+.top small { color: var(--muted); font-size: 0.85rem; }
+
+.intro { padding-block: clamp(28px, 5vw, 56px) 28px; display: grid; gap: 12px; max-width: 700px; }
+.eyebrow { font-size: 0.76rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--red-ink); }
+.intro p.lede { color: var(--muted); font-size: 1.08rem; }
+
+.progress { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0 0 28px; padding: 0; }
+.progress li { border-top: 3px solid var(--line); padding-top: 8px; font-size: 0.82rem; font-weight: 700; color: var(--muted); display: grid; gap: 0; }
+.progress li span { font-size: 0.7rem; letter-spacing: .12em; text-transform: uppercase; }
+.progress li.done { border-color: var(--rose); color: var(--fg); }
+.progress li.now { border-color: var(--red); color: var(--fg); }
+@media (max-width: 520px) { .progress li b { display: none; } }
+
+.app { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
+@media (max-width: 900px) { .app { grid-template-columns: minmax(0, 1fr); } }
+
+.step { display: grid; gap: 22px; }
+.step[hidden] { display: none; }
+.trips { display: grid; gap: 14px; }
+.trip {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 16px; align-items: start; text-align: left;
+  background: var(--panel); border: 2px solid transparent; border-radius: 18px; padding: 20px; cursor: pointer; font: inherit; color: inherit; width: 100%;
+}
+.trip[aria-checked="true"] { border-color: var(--red); background: var(--panel-2); }
+.trip .radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--muted); margin-top: 4px; display: grid; place-items: center; }
+.trip[aria-checked="true"] .radio { border-color: var(--red); }
+.trip[aria-checked="true"] .radio::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--red); }
+.trip h3 { font-size: 1.25rem; }
+.trip .meta { font-size: 0.78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+.trip .where { color: var(--muted); font-size: 0.92rem; }
+.trip .pr { text-align: right; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.trip .pr small { display: block; font-family: var(--font-body); font-weight: 400; font-size: 0.74rem; color: var(--muted); }
+.trip .tx { display: grid; gap: 2px; min-width: 0; }
+.trip.c-red .meta { color: var(--red-ink); } .trip.c-rose .meta { color: var(--rose-ink); } .trip.c-gold .meta { color: var(--gold-ink); }
+@media (max-width: 520px) { .trip { grid-template-columns: 22px minmax(0, 1fr); } .trip .pr { grid-column: 2; text-align: left; } }
+
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label, .field .lbl { font-size: 0.85rem; font-weight: 700; }
+.field .hint { font-size: 0.82rem; color: var(--muted); }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  font: inherit; color: var(--fg); background: var(--panel-2); border: 2px solid var(--line); border-radius: 12px; padding: 12px 14px; width: 100%; min-width: 0;
+}
+textarea { resize: vertical; min-height: 84px; }
+input:focus, select:focus, textarea:focus { border-color: var(--rose-ink); outline: none; }
+.field.bad input, .field.bad select { border-color: var(--err); }
+.err { color: var(--err); font-size: 0.84rem; font-weight: 500; min-height: 0; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 560px) { .row2 { grid-template-columns: minmax(0, 1fr); } }
+
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg button { font: inherit; font-weight: 700; font-size: 0.92rem; padding: 10px 18px; border-radius: 999px; border: 2px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+.stepper { display: inline-flex; align-items: center; gap: 0; border: 2px solid var(--line); border-radius: 999px; background: var(--panel-2); width: max-content; }
+.stepper button { width: 46px; height: 46px; border: 0; background: transparent; font: inherit; font-size: 1.4rem; color: var(--fg); cursor: pointer; border-radius: 50%; }
+.stepper button:disabled { opacity: .3; cursor: default; }
+.stepper output { min-width: 40px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+.seats { display: flex; gap: 5px; flex-wrap: wrap; }
+.seats i { width: 14px; height: 14px; border-radius: 50%; background: var(--line); display: block; }
+.seats i.mine { background: var(--red); }
+
+.actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between; padding-top: 8px; }
+.btn { font: inherit; font-weight: 700; font-size: 1rem; background: var(--red); color: var(--on-red); border: 2px solid var(--red); padding: 14px 28px; border-radius: 999px; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+
+.review { background: var(--panel); border-radius: 18px; padding: 22px; display: grid; gap: 12px; }
+.review dl { margin: 0; display: grid; grid-template-columns: minmax(0, 140px) minmax(0, 1fr); gap: 10px 16px; font-size: 0.97rem; }
+.review dt { color: var(--muted); }
+.review dd { margin: 0; font-weight: 500; overflow-wrap: anywhere; }
+.pay { border: 2px solid var(--fg); border-radius: 18px; padding: 22px; display: grid; gap: 14px; }
+.pay .due { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.pay .due b { font-family: var(--font-display); font-size: 2rem; font-variant-numeric: tabular-nums; }
+.note { font-size: 0.86rem; color: var(--muted); }
+.notice { background: var(--panel); border-left: 4px solid var(--gold); padding: 12px 14px; border-radius: 8px; font-size: 0.9rem; }
+
+.sum { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 76px); background: var(--panel); border-radius: 22px; padding: 24px; display: grid; gap: 16px; }
+@media (max-width: 900px) { .sum { position: static; } }
+.sum h2 { font-size: 1.2rem; }
+.sum .name { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; line-height: 1.15; }
+.sum .lines { display: grid; gap: 8px; font-size: 0.95rem; }
+.sum .ln { display: flex; justify-content: space-between; gap: 12px; }
+.sum .ln span:first-child { color: var(--muted); }
+.sum .ln span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.sum hr { border: 0; border-top: 1px solid var(--line); margin: 0; width: 100%; }
+.sum .tot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.sum .tot b { font-family: var(--font-display); font-size: 1.35rem; font-variant-numeric: tabular-nums; text-align: right; }
+.sum .empty { color: var(--muted); font-size: 0.95rem; }
+.incl { margin: 0; padding-left: 18px; font-size: 0.88rem; color: var(--muted); display: grid; gap: 3px; }
+.incl li::marker { color: var(--rose); }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Sakura <span aria-hidden="true">桜</span></div>
+    <small>Small-group Japan, 12 travelers or fewer</small>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="eyebrow">Book your trip</p>
+    <h1>Choose your Japan, then reserve your seat.</h1>
+    <p class="lede">Every departure is capped at 12 travelers and includes a hands-on activity each day. It takes about two minutes to reserve.</p>
+  </div>
+
+  <ol class="progress" id="progress" aria-label="Booking progress">
+    <li><span>Step 1</span><b>Trip</b></li>
+    <li><span>Step 2</span><b>Month and travelers</b></li>
+    <li><span>Step 3</span><b>Your details</b></li>
+    <li><span>Step 4</span><b>Review and pay</b></li>
+  </ol>
+
+  <div class="app">
+    <form id="form" novalidate>
+
+      <section class="step" id="s1" aria-labelledby="h1a">
+        <h2 id="h1a">Which trip is calling you?</h2>
+        <div class="trips" role="radiogroup" aria-label="Trip" id="trips"></div>
+        <div class="field" id="season-field" hidden>
+          <span class="lbl" id="season-lbl">Season</span>
+          <div class="seg" role="group" aria-labelledby="season-lbl" id="season"></div>
+          <span class="hint" id="season-hint"></span>
+        </div>
+        <p class="err" id="e1" role="alert"></p>
+        <div class="actions"><span></span><button class="btn" type="button" data-next="1">Continue</button></div>
+      </section>
+
+      <section class="step" id="s2" aria-labelledby="h2a" hidden>
+        <h2 id="h2a">When, and how many?</h2>
+        <div class="field" id="f-month">
+          <label for="month">Preferred travel month</label>
+          <select id="month"></select>
+          <span class="hint">Sakura confirms exact departure dates for your chosen month.</span>
+          <span class="err" id="e-month" role="alert"></span>
+        </div>
+        <div class="field">
+          <span class="lbl" id="trav-lbl">Travelers in your party</span>
+          <div class="stepper" role="group" aria-labelledby="trav-lbl">
+            <button type="button" id="minus" aria-label="Fewer travelers">−</button>
+            <output id="trav" aria-live="polite">2</output>
+            <button type="button" id="plus" aria-label="More travelers">+</button>
+          </div>
+          <div class="seats" id="seats" aria-hidden="true"></div>
+          <span class="hint">Each departure holds up to 12 travelers. You can reserve up to 6 seats at once.</span>
+        </div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="2">Back</button><button class="btn" type="button" data-next="2">Continue</button></div>
+      </section>
+
+      <section class="step" id="s3" aria-labelledby="h3a" hidden>
+        <h2 id="h3a">Who is the lead traveler?</h2>
+        <div class="row2">
+          <div class="field" id="f-first"><label for="first">First name</label><input type="text" id="first" autocomplete="given-name"><span class="err" id="e-first" role="alert"></span></div>
+          <div class="field" id="f-last"><label for="last">Last name</label><input type="text" id="last" autocomplete="family-name"><span class="err" id="e-last" role="alert"></span></div>
+        </div>
+        <div class="row2">
+          <div class="field" id="f-email"><label for="email">Email</label><input type="email" id="email" autocomplete="email"><span class="err" id="e-email" role="alert"></span></div>
+          <div class="field" id="f-phone"><label for="phone">Phone</label><input type="tel" id="phone" autocomplete="tel"><span class="err" id="e-phone" role="alert"></span></div>
+        </div>
+        <div class="field">
+          <label for="notes">Dietary needs, mobility or anything we should know</label>
+          <textarea id="notes"></textarea>
+        </div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="3">Back</button><button class="btn" type="button" data-next="3">Review booking</button></div>
+      </section>
+
+      <section class="step" id="s4" aria-labelledby="h4a" hidden>
+        <h2 id="h4a">Review and pay your deposit</h2>
+        <div class="review"><dl id="review"></dl></div>
+        <div class="pay">
+          <div class="due"><span>Deposit due today</span><b id="due"></b></div>
+          <p class="note" id="paynote"></p>
+          <a class="btn" id="paybtn" href="#" target="_blank" rel="noopener">Pay deposit securely</a>
+          <p class="note">You pay on your payment provider's own secure page. Sakura never sees or stores your card details.</p>
+        </div>
+        <div class="notice" id="nolink" hidden>Online payment is not switched on yet. Please contact Sakura to reserve your seat.</div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="4">Back</button><span></span></div>
+      </section>
+    </form>
+
+    <aside class="sum" aria-label="Booking summary">
+      <h2>Your trip</h2>
+      <div id="sum"></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+(function () {
+  /* Owner settings. Paste your payment provider's link for each trip below (for example a Stripe Payment Link).
+     The deposit rate is a placeholder until you set your real deposit policy. */
+  var PAYMENT_LINKS = { kuishinbo: "", wabisabi: "", "yugen-summer": "", "yugen-winter": "" };
+  var DEPOSIT_RATE = 0.25;
+
+  var TRIPS = [
+    { id: "kuishinbo", color: "c-red", cat: "Culinary", name: "Kuishinbo Kairo", where: "Osaka, Kobe", days: 5, low: 3500, high: 4100,
+      incl: ["Market walks and hands-on cooking classes", "Family-hosted home dinner and tea ceremony", "Wagyu farm tour and sake tasting"] },
+    { id: "wabisabi", color: "c-rose", cat: "Cultural immersion", name: "Wabi-Sabi Trail", where: "Nara, Kyoto, Hiroshima", days: 7, low: 5200, high: 6000,
+      incl: ["Guided temple and landmark walks", "Taiko, tea and crafting workshops", "Scenic train and bullet train transfers"] },
+    { id: "yugen", color: "c-gold", cat: "Adventure", name: "Yugen", where: "Okinawa and Yakushima, or Asahidake and Sounkyo", days: null, low: 5800, high: 6400,
+      seasons: {
+        summer: { id: "yugen-summer", label: "Summer", days: 7, where: "Okinawa, Yakushima", months: [5,6,7,8], hint: "7 days of kayaking, snorkeling and rainforest trekking.",
+          incl: ["Guided kayaking, snorkeling and jungle canopy course", "Jomon Sugi cedar trek and onsen", "Loggerhead sea turtle watching"] },
+        winter: { id: "yugen-winter", label: "Winter", days: 6, where: "Asahidake, Sounkyo", months: [0,1,2], hint: "6 days of snowshoeing, onsen and dog-sledding in Hokkaido.",
+          incl: ["Guided snowshoe, ski and snowmobile outings", "Outdoor onsen and alpine lodge stays", "Dog-sledding and ice waterfall festival"] }
+      } }
+  ];
+  var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var YEAR = 2027;
+
+  var S = { step: 1, trip: null, season: null, month: "", trav: 2 };
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+
+  function cur() {
+    if (!S.trip) return null;
+    var t = S.trip;
+    if (t.seasons) {
+      var s = S.season ? t.seasons[S.season] : null;
+      return { id: s ? s.id : null, name: t.name + (s ? " · " + s.label : ""), where: s ? s.where : t.where, days: s ? s.days : null, low: t.low, high: t.high, incl: s ? s.incl : [], months: s ? s.months : null, ready: !!s };
+    }
+    return { id: t.id, name: t.name, where: t.where, days: t.days, low: t.low, high: t.high, incl: t.incl, months: null, ready: true };
+  }
+
+  function buildTrips() {
+    var h = "";
+    TRIPS.forEach(function (t) {
+      h += '<button type="button" role="radio" aria-checked="false" class="trip ' + t.color + '" data-id="' + t.id + '">' +
+        '<span class="radio" aria-hidden="true"></span><span class="tx"><span class="meta">' + t.cat + "</span><h3>" + t.name + '</h3><span class="where">' + t.where + "</span></span>" +
+        '<span class="pr">' + money(t.low) + " – " + money(t.high) + "<small>per traveler</small></span></button>";
+    });
+    $("trips").innerHTML = h;
+    $("trips").addEventListener("click", function (e) {
+      var b = e.target.closest(".trip"); if (!b) return;
+      S.trip = TRIPS.filter(function (t) { return t.id === b.getAttribute("data-id"); })[0];
+      S.season = null; S.month = "";
+      $("e1").textContent = "";
+      renderTrips(); renderSeason(); renderSummary();
+    });
+  }
+  function renderTrips() {
+    var bs = document.querySelectorAll(".trip");
+    for (var i = 0; i < bs.length; i++) bs[i].setAttribute("aria-checked", S.trip && bs[i].getAttribute("data-id") === S.trip.id ? "true" : "false");
+  }
+  function renderSeason() {
+    var f = $("season-field");
+    if (!S.trip || !S.trip.seasons) { f.hidden = true; return; }
+    f.hidden = false;
+    var h = "";
+    Object.keys(S.trip.seasons).forEach(function (k) {
+      h += '<button type="button" data-season="' + k + '" aria-pressed="' + (S.season === k) + '">' + S.trip.seasons[k].label + "</button>";
+    });
+    $("season").innerHTML = h;
+    $("season-hint").textContent = S.season ? S.trip.seasons[S.season].hint : "Choose summer or winter to continue.";
+  }
+  $("season").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    S.season = b.getAttribute("data-season"); S.month = ""; $("e1").textContent = "";
+    renderSeason(); renderSummary();
+  });
+
+  function buildMonths() {
+    var c = cur(), h = '<option value="">Select a month</option>';
+    for (var m = 0; m < 12; m++) {
+      if (c && c.months && c.months.indexOf(m) < 0) continue;
+      var v = MONTHS[m] + " " + YEAR;
+      h += '<option value="' + v + '"' + (S.month === v ? " selected" : "") + ">" + v + "</option>";
+    }
+    $("month").innerHTML = h;
+  }
+
+  function renderSeats() {
+    var h = "";
+    for (var i = 0; i < 12; i++) h += '<i class="' + (i < S.trav ? "mine" : "") + '"></i>';
+    $("seats").innerHTML = h;
+    $("trav").textContent = S.trav;
+    $("minus").disabled = S.trav <= 1;
+    $("plus").disabled = S.trav >= 6;
+  }
+  $("minus").addEventListener("click", function () { if (S.trav > 1) { S.trav--; renderSeats(); renderSummary(); } });
+  $("plus").addEventListener("click", function () { if (S.trav < 6) { S.trav++; renderSeats(); renderSummary(); } });
+  $("month").addEventListener("change", function () { S.month = this.value; this.parentNode.classList.remove("bad"); $("e-month").textContent = ""; renderSummary(); });
+
+  function est() {
+    var c = cur(); if (!c) return null;
+    return { from: c.low * S.trav, to: c.high * S.trav, dep: c.low * S.trav * DEPOSIT_RATE, rest: c.low * S.trav * (1 - DEPOSIT_RATE) };
+  }
+
+  function renderSummary() {
+    var c = cur(), el = $("sum");
+    if (!c) { el.innerHTML = '<p class="empty">Pick a trip to see your price and what is included.</p>'; return; }
+    var e = est();
+    var h = '<div class="name">' + c.name + "</div>";
+    h += '<div class="lines">';
+    h += ln("Route", c.where);
+    h += ln("Length", c.days ? c.days + " days" : "Choose a season");
+    h += ln("Month", S.month || "Not chosen yet");
+    h += ln("Travelers", S.trav);
+    h += "</div><hr>";
+    h += ln2("Price per traveler", money(c.low) + " – " + money(c.high));
+    h += '<div class="tot"><span>Trip total</span><b>' + money(e.from) + " – " + money(e.to) + "</b></div>";
+    h += '<p class="note">Your exact price within this range depends on your departure date. Sakura confirms it before the balance is due.</p>';
+    if (c.incl.length) h += '<hr><ul class="incl">' + c.incl.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>";
+    el.innerHTML = h;
+  }
+  function ln(a, b) { return '<div class="ln"><span>' + a + "</span><span>" + b + "</span></div>"; }
+  function ln2(a, b) { return '<div class="ln"><span>' + a + "</span><span><b>" + b + "</b></span></div>"; }
+
+  function show(n) {
+    S.step = n;
+    for (var i = 1; i <= 4; i++) $("s" + i).hidden = i !== n;
+    var lis = $("progress").children;
+    for (var j = 0; j < lis.length; j++) lis[j].className = j + 1 < n ? "done" : j + 1 === n ? "now" : "";
+    if (n === 2) { buildMonths(); renderSeats(); }
+    if (n === 4) renderReview();
+    if (S.started) $("progress").scrollIntoView({ block: "start" });
+    S.started = true;
+  }
+
+  function bad(id, msg) { var f = $("f-" + id); f.classList.add("bad"); $("e-" + id).textContent = msg; return false; }
+  function ok(id) { var f = $("f-" + id); f.classList.remove("bad"); $("e-" + id).textContent = ""; }
+
+  function validate(n) {
+    if (n === 1) {
+      var c = cur();
+      if (!c) { $("e1").textContent = "Choose a trip to continue."; return false; }
+      if (!c.ready) { $("e1").textContent = "Choose summer or winter to continue."; return false; }
+      return true;
+    }
+    if (n === 2) {
+      if (!S.month) return bad("month", "Choose a travel month.");
+      ok("month"); return true;
+    }
+    if (n === 3) {
+      var good = true;
+      ["first", "last"].forEach(function (k) { if (!$(k).value.trim()) { bad(k, "Enter your " + (k === "first" ? "first" : "last") + " name."); good = false; } else ok(k); });
+      var em = $("email").value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { bad("email", "Enter an email address like name@example.com."); good = false; } else ok("email");
+      var ph = $("phone").value.replace(/[^\d]/g, "");
+      if (ph.length < 7) { bad("phone", "Enter a phone number with at least 7 digits."); good = false; } else ok("phone");
+      return good;
+    }
+    return true;
+  }
+
+  function renderReview() {
+    var c = cur(), e = est();
+    var rows = [
+      ["Trip", c.name], ["Route", c.where], ["Length", c.days + " days"], ["Month", S.month], ["Travelers", S.trav],
+      ["Lead traveler", $("first").value.trim() + " " + $("last").value.trim()], ["Email", $("email").value.trim()], ["Phone", $("phone").value.trim()]
+    ];
+    var n = $("notes").value.trim(); if (n) rows.push(["Notes", n]);
+    var h = ""; rows.forEach(function (r) { h += "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; });
+    $("review").innerHTML = h;
+    $("due").textContent = money(e.dep);
+    $("paynote").textContent = "That is " + Math.round(DEPOSIT_RATE * 100) + "% of the starting price for " + S.trav + (S.trav === 1 ? " traveler" : " travelers") + " (" + money(e.from) + "). The remaining " + money(e.rest) + " is settled with Sakura.";
+    var link = PAYMENT_LINKS[c.id] || "", b = $("paybtn");
+    if (link) {
+      var sep = link.indexOf("?") >= 0 ? "&" : "?";
+      b.href = link + sep + "prefilled_email=" + encodeURIComponent($("email").value.trim()) + "&client_reference_id=" + encodeURIComponent(c.id + "-" + S.month.replace(/\s/g, "") + "-" + S.trav + "pax");
+      b.removeAttribute("aria-disabled"); $("nolink").hidden = true;
+    } else {
+      b.href = "#"; b.setAttribute("aria-disabled", "true"); $("nolink").hidden = false;
+    }
+  }
+  $("paybtn").addEventListener("click", function (e) { if (this.getAttribute("aria-disabled") === "true") e.preventDefault(); });
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  document.addEventListener("click", function (e) {
+    var nx = e.target.closest("[data-next]"), bk = e.target.closest("[data-back]");
+    if (nx) { var n = +nx.getAttribute("data-next"); if (validate(n)) show(n + 1); }
+    if (bk) show(+bk.getAttribute("data-back") - 1);
+  });
+  $("form").addEventListener("submit", function (e) { e.preventDefault(); });
+
+  buildTrips(); renderSeason(); renderSummary(); show(1);
+})();
+</script>
+
+</body></html>
